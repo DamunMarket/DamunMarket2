@@ -1,0 +1,108 @@
+{
+  "updatedAt": "2026-07-06",
+  "updatedAtIso": "2026-07-06T21:47:52.430034+09:00",
+  "source": "쿠팡 파트너스 Open API (bestcategories: 생활용품/주방용품/홈인테리어)",
+  "disclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+  "items": [
+    {
+      "rank": 1,
+      "productId": 8366355412,
+      "productName": "매직캔 매직롤 280 화이트 로고 인쇄 리필",
+      "productImage": "https://image12.coupangcdn.com/image/retail/images/2024/06/19/17/6/d5eb7c62-d505-418c-9304-fe55417d3066.jpg",
+      "productPrice": 15700.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=8366355412&itemId=23368486877&vendorItemId=90398752493&traceid=V0-113-b216333ece2ff72f",
+      "categoryName": "생활용품",
+      "isRocket": true
+    },
+    {
+      "rank": 2,
+      "productId": 169280610,
+      "productName": "코멧 깨끗한 천연펄프 키친타월",
+      "productImage": "https://img2c.coupangcdn.com/image/retail/images/77501536142093-e3d45edd-9f61-4817-9073-b527fca4280f.png",
+      "productPrice": 6810.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=169280610&itemId=484461411&vendorItemId=4220116848&traceid=V0-113-4ae8b097aa58b84c",
+      "categoryName": "생활용품",
+      "isRocket": true
+    },
+    {
+      "rank": 3,
+      "productId": 130164876,
+      "productName": "듀라셀 알카라인 AA 건전지",
+      "productImage": "https://image2.coupangcdn.com/image/retail/images/943896774536058-084f28ad-2c21-4ee4-bcc0-e6912a06198e.jpg",
+      "productPrice": 13900.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=130164876&itemId=21326386046&vendorItemId=4949572331&traceid=V0-113-f0e7e0b4d5b695e9",
+      "categoryName": "생활용품",
+      "isRocket": true
+    },
+    {
+      "rank": 4,
+      "productId": 117235005,
+      "productName": "오즈맘 유아동용 캐릭터 가제 손수건 10p 세트",
+      "productImage": "https://image3.coupangcdn.com/image/retail/images/2018/08/02/17/3/d02e0bbd-4604-4870-a5f8-a4f9fc4ebcb9.jpg",
+      "productPrice": 5600.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=117235005&itemId=350832708&vendorItemId=3855251040&traceid=V0-113-05f42b25740d56b7",
+      "categoryName": "패션의류",
+      "isRocket": true
+    },
+    {
+      "rank": 5,
+      "productId": 8255612928,
+      "productName": "코멧 손이 편한 위생장갑",
+      "productImage": "https://img1a.coupangcdn.com/image/retail/images/526942403074766-9f48cebd-764c-49c0-b77a-76a38de541f2.jpg",
+      "productPrice": 5580.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=8255612928&itemId=23774321269&vendorItemId=90798555812&traceid=V0-113-eedf29f11fed63c4",
+      "categoryName": "주방용품",
+      "isRocket": true
+    },
+    {
+      "rank": 6,
+      "productId": 7370852457,
+      "productName": "벡셀 알카라인 AA 건전지",
+      "productImage": "https://image4.coupangcdn.com/image/retail/images/1078146430561617-8522720d-73d1-4d63-a403-1e3b1f9e4bc6.jpg",
+      "productPrice": 8160.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=7370852457&itemId=19013340292&vendorItemId=3191160606&traceid=V0-113-127dcc7e8403d34b",
+      "categoryName": "생활용품",
+      "isRocket": true
+    },
+    {
+      "rank": 7,
+      "productId": 7134558328,
+      "productName": "크리넥스 안심 3겹 키친타올",
+      "productImage": "https://img5c.coupangcdn.com/image/retail/images/212202820595125-a3283e0c-7c03-4898-b6ae-731fc724862a.png",
+      "productPrice": 6700.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=7134558328&itemId=20247515510&vendorItemId=3158599929&traceid=V0-113-1640d8dc2891e05d",
+      "categoryName": "생활용품",
+      "isRocket": true
+    },
+    {
+      "rank": 8,
+      "productId": 7104553961,
+      "productName": "듀라셀 오리지널 AAA 건전지",
+      "productImage": "https://image2.coupangcdn.com/image/retail/images/88504895011624-349b534a-7b7b-43f8-964c-3f130494c65c.jpg",
+      "productPrice": 13900.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=7104553961&itemId=14516512583&vendorItemId=4949572312&traceid=V0-113-a288cfa2bb3e4d06",
+      "categoryName": "생활용품",
+      "isRocket": true
+    },
+    {
+      "rank": 9,
+      "productId": 8520281997,
+      "productName": "프로그 향기나는 기저귀봉투 베이비파우더향 100p",
+      "productImage": "https://image10.coupangcdn.com/image/retail/images/845662615684342-71e8e3ea-eed1-4cd9-a597-ed0bc1075465.jpg",
+      "productPrice": 8200.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=8520281997&itemId=154765889&vendorItemId=3361346762&traceid=V0-113-fd869e24ac667329",
+      "categoryName": "출산/유아",
+      "isRocket": true
+    },
+    {
+      "rank": 10,
+      "productId": 9055230703,
+      "productName": "스파클 종이컵 185ml",
+      "productImage": "https://image2.coupangcdn.com/image/vendor_inventory/c815/52b21d2f0b1d4fcfecfe3eedaa33b1dd5f7d21f1125330caa0aa6d8e77c3.jpg",
+      "productPrice": 9990.0,
+      "productUrl": "https://link.coupang.com/re/AFFSDP?lptag=AF2438705&pageKey=9055230703&itemId=26580293242&vendorItemId=93553714655&traceid=V0-113-67eb8b5a2831964c",
+      "categoryName": "주방용품",
+      "isRocket": false
+    }
+  ]
+}

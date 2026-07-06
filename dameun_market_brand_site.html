@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>담은마켓 — 일상에 꼭 필요한 꿀템만 담다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --clay-900:#3B2A22;
+    --clay-700:#6B4A38;
+    --clay-500:#B97A55;
+    --clay-300:#E3B896;
+    --sage-500:#7A8C6E;
+    --sage-300:#B7C6AC;
+    --sand-50:#FBF6EF;
+    --sand-100:#F4EBDD;
+    --sand-200:#EADFCB;
+    --ink-900:#2A2420;
+    --ink-500:#7A7267;
+    --line:#E4D8C4;
+    --white:#FFFFFF;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; font-family:'Noto Sans KR',sans-serif; color:var(--ink-900); background:var(--sand-50);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Noto Serif KR',serif; margin:0; line-height:1.3; }
+  a{ text-decoration:none; color:inherit; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
+    background:rgba(251,246,239,.85); border-bottom:1px solid var(--line);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1120px; margin:0 auto; }
+  .logo{ font-family:'Noto Serif KR'; font-weight:900; font-size:20px; letter-spacing:-.01em; color:var(--clay-900); }
+  .nav-links{ display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--ink-500); }
+  .nav-links a:hover{ color:var(--clay-700); }
+  .nav-cta{
+    background:var(--clay-900); color:#fff; padding:10px 20px; border-radius:99px; font-size:13.5px; font-weight:700;
+    white-space:nowrap;
+  }
+  @media (max-width:720px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:96px 28px 80px; overflow:hidden;
+    background:
+      radial-gradient(700px 420px at 85% -10%, var(--sage-300) 0%, transparent 60%),
+      radial-gradient(600px 500px at -10% 30%, var(--clay-300) 0%, transparent 55%),
+      var(--sand-50);
+  }
+  .hero-inner{ max-width:1120px; margin:0 auto; text-align:center; }
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--clay-700); background:rgba(255,255,255,.6); border:1px solid var(--clay-300);
+    padding:7px 16px; border-radius:99px; margin-bottom:26px;
+  }
+  .hero h1{
+    font-size:clamp(34px, 6vw, 68px); font-weight:900; color:var(--ink-900); letter-spacing:-.02em; margin-bottom:22px;
+  }
+  .hero h1 em{ font-style:normal; color:var(--clay-500); }
+  .hero p.lead{
+    font-size:clamp(15px, 2vw, 19px); color:var(--ink-500); max-width:560px; margin:0 auto 36px; line-height:1.75;
+  }
+  .hero-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:15px 28px; border-radius:99px; font-weight:700; font-size:14.5px; }
+  .btn-primary{ background:var(--clay-900); color:#fff; }
+  .btn-primary:hover{ background:var(--clay-700); }
+  .btn-ghost{ background:#fff; color:var(--ink-900); border:1.5px solid var(--line); }
+  .btn-ghost:hover{ border-color:var(--clay-500); }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{ background:var(--clay-900); color:var(--sand-50); overflow:hidden; padding:16px 0; white-space:nowrap; }
+  .marquee-track{ display:inline-flex; gap:40px; animation:scroll 22s linear infinite; }
+  .marquee-track span{ font-family:'Noto Serif KR'; font-size:16px; font-weight:600; letter-spacing:.02em; }
+  .marquee-track span::after{ content:'✦'; margin-left:40px; color:var(--clay-300); }
+  @keyframes scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ---------- STORY / PILLARS ---------- */
+  .story{ padding:100px 28px; }
+  .story-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .story-head .eyebrow{ color:var(--sage-500); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:12px; display:block; }
+  .story-head h2{ font-size:clamp(26px,3.6vw,38px); margin-bottom:14px; }
+  .story-head p{ color:var(--ink-500); font-size:15.5px; line-height:1.75; }
+  .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .pillar{ background:#fff; border:1px solid var(--line); border-radius:20px; padding:32px 26px; }
+  .pillar .num{ font-family:'Noto Serif KR'; font-size:14px; font-weight:700; color:var(--clay-500); margin-bottom:16px; }
+  .pillar h3{ font-size:19px; margin-bottom:10px; }
+  .pillar p{ font-size:13.5px; color:var(--ink-500); line-height:1.7; }
+  @media (max-width:820px){ .pillars{ grid-template-columns:1fr; } }
+
+  /* ---------- LINEUP ---------- */
+  .lineup{ background:var(--sand-100); padding:100px 28px; }
+  .lineup-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:44px; flex-wrap:wrap; gap:16px; }
+  .lineup-head .eyebrow{ color:var(--clay-700); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:10px; display:block; }
+  .lineup-head h2{ font-size:clamp(26px,3.6vw,36px); }
+  .lineup-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:24px; }
+  .cat-card{ border-radius:24px; padding:40px 32px; min-height:320px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; }
+  .cat-card.a{ background:linear-gradient(150deg, var(--clay-500), var(--clay-900)); color:#fff; }
+  .cat-card.b{ background:linear-gradient(150deg, var(--sage-300), var(--sage-500)); color:#fff; }
+  .cat-card .tag{ font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; background:rgba(255,255,255,.22); display:inline-block; padding:5px 12px; border-radius:99px; margin-bottom:16px; width:fit-content; }
+  .cat-card h3{ font-size:24px; margin-bottom:10px; color:#fff; }
+  .cat-card p{ font-size:13.5px; line-height:1.7; color:rgba(255,255,255,.85); max-width:32ch; }
+  @media (max-width:820px){ .lineup-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- FEATURED ITEM ---------- */
+  .featured{ padding:100px 28px; }
+  .feat-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center; }
+  .feat-img{ background:var(--sand-100); border-radius:24px; padding:36px; display:flex; align-items:center; justify-content:center; }
+  .feat-img img{ width:100%; max-width:280px; border-radius:16px; }
+  .feat-text .eyebrow{ color:var(--clay-700); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:14px; display:block; }
+  .feat-text h2{ font-size:clamp(24px,3.2vw,34px); margin-bottom:16px; }
+  .feat-text p{ color:var(--ink-500); font-size:14.5px; line-height:1.8; margin-bottom:24px; max-width:44ch; }
+  .feat-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+  .feat-list li{ list-style:none; font-size:13.5px; color:var(--ink-900); display:flex; gap:10px; align-items:flex-start; }
+  .feat-list li::before{ content:'✦'; color:var(--clay-500); flex:none; }
+  @media (max-width:820px){ .feat-grid{ grid-template-columns:1fr; } .feat-img img{ max-width:200px; } }
+
+  /* ---------- RANKING (COUPANG / SEARCH) ---------- */
+  .ranking{ padding:100px 28px; }
+  .ranking.on-sand{ background:var(--sand-100); }
+  .ranking-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:14px; flex-wrap:wrap; gap:16px; }
+  .ranking-head .eyebrow{ color:var(--clay-700); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:10px; display:block; }
+  .ranking-head h2{ font-size:clamp(26px,3.6vw,36px); }
+  .ranking-updated{ font-size:12.5px; color:var(--ink-500); background:#fff; border:1px solid var(--line); padding:6px 14px; border-radius:99px; white-space:nowrap; }
+  .ranking-note{ font-size:12.5px; color:var(--ink-500); line-height:1.7; margin-bottom:36px; max-width:70ch; }
+  .ranking-note strong{ color:var(--clay-700); }
+  .rank-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+  @media (max-width:960px){ .rank-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:640px){ .rank-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .rank-card{ background:#fff; border:1px solid var(--line); border-radius:18px; padding:18px 16px 20px; display:flex; flex-direction:column; transition:transform .2s ease, box-shadow .2s ease; }
+  a.rank-card{ cursor:pointer; }
+  .rank-card:hover{ transform:translateY(-4px); box-shadow:0 12px 24px rgba(59,42,34,.1); border-color:var(--clay-300); }
+  .rank-card .rank-badge{ font-family:'Noto Serif KR'; font-weight:900; font-size:13px; color:#fff; background:var(--clay-500); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:12px; }
+  .rank-card:nth-child(1) .rank-badge{ background:var(--clay-900); }
+  .rank-card:nth-child(2) .rank-badge{ background:var(--clay-700); }
+  .rank-card:nth-child(3) .rank-badge{ background:var(--sage-500); }
+  .rank-card .rank-img{ background:var(--sand-100); border-radius:12px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:12px; }
+  .rank-card .rank-img img{ width:100%; height:100%; object-fit:cover; }
+  .rank-card .rank-name{ font-size:12.5px; font-weight:500; color:var(--ink-900); line-height:1.5; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .rank-card .rank-price{ font-family:'Noto Serif KR'; font-weight:700; font-size:15px; color:var(--clay-700); margin-top:auto; }
+  .rank-card .rank-rocket{ display:inline-block; font-size:10px; font-weight:700; color:#fff; background:var(--sage-500); padding:2px 8px; border-radius:99px; margin-bottom:8px; width:fit-content; }
+
+  .kw-card .kw-word{ font-family:'Noto Serif KR'; font-weight:700; font-size:16px; color:var(--ink-900); margin-bottom:6px; line-height:1.4; }
+  .kw-card .kw-meta{ font-size:11.5px; color:var(--ink-500); margin-top:auto; }
+  .rank-loading, .rank-error{ grid-column:1/-1; text-align:center; padding:40px; color:var(--ink-500); font-size:13.5px; }
+
+  /* ---------- MOOD GRID ---------- */
+  .mood{ background:var(--clay-900); padding:100px 28px; text-align:center; }
+  .mood .eyebrow{ color:var(--clay-300); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:14px; display:block; }
+  .mood h2{ color:#fff; font-size:clamp(24px,3.2vw,34px); margin-bottom:44px; }
+  .mood-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  .mood-tile{ aspect-ratio:1; border-radius:16px; display:flex; align-items:center; justify-content:center; font-family:'Noto Serif KR'; font-weight:700; color:#fff; font-size:13px; }
+  @media (max-width:820px){ .mood-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:520px){ .mood-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ---------- CONTACT / CTA ---------- */
+  .contact{ padding:110px 28px; text-align:center; }
+  .contact .eyebrow{ color:var(--sage-500); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:14px; display:block; }
+  .contact h2{ font-size:clamp(26px,4vw,42px); margin-bottom:18px; }
+  .contact p{ color:var(--ink-500); font-size:15px; line-height:1.75; max-width:480px; margin:0 auto 36px; }
+  .contact-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+  .contact-note{ font-size:12px; color:var(--ink-500); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--sand-100); border-top:1px solid var(--line); padding:48px 28px 36px; }
+  .foot-inner{ max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; }
+  .foot-brand{ font-family:'Noto Serif KR'; font-weight:900; font-size:18px; color:var(--clay-900); margin-bottom:8px; }
+  .foot-info{ font-size:12px; color:var(--ink-500); line-height:1.8; }
+  .foot-links{ display:flex; gap:20px; font-size:13px; color:var(--ink-500); }
+  .foot-links a:hover{ color:var(--clay-700); }
+  .foot-bottom{ max-width:1120px; margin:32px auto 0; padding-top:20px; border-top:1px solid var(--line); font-size:11.5px; color:var(--ink-500); }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top">담은마켓</a>
+      <nav class="nav-links">
+        <a href="#story">브랜드</a>
+        <a href="#lineup">라인업</a>
+        <a href="#coupang-ranking">오늘의 쿠팡 랭킹</a>
+        <a href="#search-ranking">오늘의 검색어 랭킹</a>
+        <a href="#featured">지금 담은 아이템</a>
+        <a href="#contact">문의</a>
+      </nav>
+      <a class="nav-cta" href="#" data-note="실제 쿠팡 스토어 URL로 교체">쿠팡에서 만나보기</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-inner reveal">
+      <div class="eyebrow">DAMEUN MARKET · 생활 꿀템 & 트렌드템</div>
+      <h1>일상에 꼭 필요한<br><em>꿀템</em>만 골라 담습니다</h1>
+      <p class="lead">써보고, 비교하고, 진짜 괜찮은 것만 소싱해요. 담은마켓은 매일 쓰는 생활 꿀템과 요즘 뜨는 트렌드 아이템을 엄선해서 전해드리는 브랜드예요.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#" data-note="실제 쿠팡 스토어 URL로 교체">쿠팡 스토어 바로가기</a>
+        <a class="btn btn-ghost" href="#featured">지금 담은 아이템 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>생활 꿀템</span><span>트렌드 아이템</span><span>엄선 소싱</span><span>합리적인 가격</span>
+      <span>생활 꿀템</span><span>트렌드 아이템</span><span>엄선 소싱</span><span>합리적인 가격</span>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-head reveal">
+        <span class="eyebrow">WHY DAMEUN MARKET</span>
+        <h2>왜 담은마켓인가요</h2>
+        <p>이름처럼, 좋은 것만 '담아서' 전해드리려고 해요. 화려한 마케팅보다 실제로 쓸모 있는 물건인지를 먼저 봅니다.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div class="num">01</div>
+          <h3>엄선된 소싱</h3>
+          <p>수십 개 후보 중 실제로 써보고 비교해서, 가격 대비 만족도가 높은 아이템만 골라요.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">02</div>
+          <h3>합리적인 가격</h3>
+          <p>불필요한 마진을 걷어내고, 꼭 필요한 만큼만 붙여서 부담 없는 가격을 유지해요.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">03</div>
+          <h3>꾸준한 품질</h3>
+          <p>한 번 팔고 끝이 아니라, 후기와 문의를 반영해서 계속 다듬어가는 브랜드예요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINEUP -->
+  <section class="lineup" id="lineup">
+    <div class="wrap">
+      <div class="lineup-head reveal">
+        <div>
+          <span class="eyebrow">LINEUP</span>
+          <h2>담은마켓이 담는 것들</h2>
+        </div>
+      </div>
+      <div class="lineup-grid">
+        <div class="cat-card a reveal">
+          <span class="tag">생활 꿀템</span>
+          <h3>매일 쓰는 물건, 제대로 고른 것</h3>
+          <p>텀블러, 정리함, 주방·욕실 소품처럼 매일 손이 가는 생활용품을 실용성 중심으로 소개해요.</p>
+        </div>
+        <div class="cat-card b reveal">
+          <span class="tag">트렌드 아이템</span>
+          <h3>지금 뜨는 걸 놓치지 않게</h3>
+          <p>계절과 유행에 따라 빠르게 바뀌는 인기 아이템을 발 빠르게 찾아 담아드려요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUPANG RANKING -->
+  <section class="ranking on-sand" id="coupang-ranking">
+    <div class="wrap">
+      <div class="ranking-head reveal">
+        <div>
+          <span class="eyebrow">TODAY'S COUPANG RANKING</span>
+          <h2>오늘의 쿠팡 랭킹</h2>
+        </div>
+        <span class="ranking-updated" id="coupang-updated">업데이트 확인 중…</span>
+      </div>
+      <p class="ranking-note reveal">
+        쿠팡 파트너스 Open API의 생활용품·주방용품·홈인테리어 베스트 카테고리를 매일 새벽 자동으로 모아 만든 Top10이에요.
+        <strong>이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</strong>
+      </p>
+      <div class="rank-grid reveal" id="coupang-grid">
+        <div class="rank-loading">랭킹을 불러오는 중이에요…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH RANKING -->
+  <section class="ranking" id="search-ranking">
+    <div class="wrap">
+      <div class="ranking-head reveal">
+        <div>
+          <span class="eyebrow">TODAY'S SEARCH TREND</span>
+          <h2>오늘의 검색어 랭킹</h2>
+        </div>
+        <span class="ranking-updated" id="search-updated">업데이트 확인 중…</span>
+      </div>
+      <p class="ranking-note reveal">
+        <strong>네이버 뉴스·블로그·데이터랩 기준으로 상승세를 분석한 결과이며, 네이버 공식 실시간 검색순위가 아닙니다.</strong>
+        오늘자 뉴스에서 화제성 키워드 후보를 뽑은 뒤, 데이터랩 검색어트렌드로 최근 검색량 상승폭이 큰 순서로 정리했어요.
+      </p>
+      <div class="rank-grid reveal" id="search-grid">
+        <div class="rank-loading">랭킹을 불러오는 중이에요…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ITEM -->
+  <section class="featured" id="featured">
+    <div class="wrap feat-grid">
+      <div class="feat-img reveal">
+        <img src="https://cdn1.domeggook.com/upload/item/2025/07/17/17527362603D0CBF93AD8AC708588D0A/17527362603D0CBF93AD8AC708588D0A_img_760?hash=bc78ca1dec13e91b235e45ce0d03486e" alt="담은마켓 500ml 텀블러 3종세트">
+      </div>
+      <div class="feat-text reveal">
+        <span class="eyebrow">NOW IN THE CART</span>
+        <h2>지금 담은 첫 번째 아이템</h2>
+        <p>매일 물 잘 챙겨 마시는 습관을 위한 500ml 텀블러 3종세트. 담은마켓이 가장 먼저 소개하는 생활 꿀템이에요.</p>
+        <ul class="feat-list">
+          <li>스텐316 이중진공 보온보냉, 색상 5종</li>
+          <li>빨대솔·컵스펀지솔까지 한 번에 구성</li>
+          <li>구매 후기 이벤트로 커피기프티콘 매주 추첨</li>
+        </ul>
+        <a class="btn btn-primary" href="#" data-note="실제 쿠팡 상품 URL로 교체">쿠팡에서 보러가기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOOD -->
+  <section class="mood">
+    <div class="wrap">
+      <span class="eyebrow">DAMEUN MOOD</span>
+      <h2>담은마켓의 색</h2>
+      <div class="mood-grid">
+        <div class="mood-tile" style="background:#B97A55">CLAY</div>
+        <div class="mood-tile" style="background:#7A8C6E">SAGE</div>
+        <div class="mood-tile" style="background:#EADFCB;color:#3B2A22">SAND</div>
+        <div class="mood-tile" style="background:#3B2A22">INK</div>
+        <div class="mood-tile" style="background:#E3B896;color:#3B2A22">TERRA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <span class="eyebrow">CONTACT</span>
+    <h2>궁금한 점이 있으신가요</h2>
+    <p>제휴·입점 문의, 상품 제안, 궁금하신 점 모두 편하게 남겨주세요. 확인 후 빠르게 답변드릴게요.</p>
+    <div class="contact-ctas">
+      <a class="btn btn-primary" href="mailto:dameunmarket@example.com" data-note="실제 문의용 이메일로 교체">이메일로 문의하기</a>
+      <a class="btn btn-ghost" href="#" data-note="실제 인스타그램 URL로 교체">인스타그램 팔로우</a>
+    </div>
+    <div class="contact-note">평균 응답 시간 1~2일 (영업일 기준)</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <div class="foot-brand">담은마켓</div>
+        <div class="foot-info">
+          상호 : 담은마켓 [사업자 상세 기재]<br>
+          사업자등록번호 : [기재] · 통신판매업신고번호 : [기재]<br>
+          대표 : [기재] · 이메일 : dameunmarket@example.com
+        </div>
+      </div>
+      <div class="foot-links">
+        <a href="#" data-note="쿠팡 스토어 URL로 교체">쿠팡 스토어</a>
+        <a href="#" data-note="인스타그램 URL로 교체">인스타그램</a>
+        <a href="#contact">문의하기</a>
+      </div>
+    </div>
+    <div class="foot-bottom wrap">
+      © 2026 담은마켓. All rights reserved.
+    </div>
+  </footer>
+
+<script>
+  // scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.15 });
+  els.forEach(el=>io.observe(el));
+
+  // ---------- 오늘의 쿠팡 랭킹 ----------
+  fetch('data/coupang-ranking.json', { cache: 'no-store' })
+    .then(res => { if(!res.ok) throw new Error('fetch failed'); return res.json(); })
+    .then(data => {
+      document.getElementById('coupang-updated').textContent = `마지막 업데이트: ${data.updatedAt}`;
+      const grid = document.getElementById('coupang-grid');
+      grid.innerHTML = (data.items || []).map(item => `
+        <a class="rank-card" href="${item.productUrl}" target="_blank" rel="noopener sponsored">
+          <span class="rank-badge">${item.rank}</span>
+          <div class="rank-img"><img src="${item.productImage}" alt="${item.productName}" loading="lazy"></div>
+          ${item.isRocket ? '<span class="rank-rocket">로켓배송</span>' : ''}
+          <div class="rank-name">${item.productName}</div>
+          <div class="rank-price">${Math.round(item.productPrice).toLocaleString('ko-KR')}원</div>
+        </a>
+      `).join('');
+    })
+    .catch(() => {
+      document.getElementById('coupang-updated').textContent = '';
+      document.getElementById('coupang-grid').innerHTML = '<div class="rank-error">랭킹 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.</div>';
+    });
+
+  // ---------- 오늘의 검색어 랭킹 ----------
+  fetch('data/search-ranking.json', { cache: 'no-store' })
+    .then(res => { if(!res.ok) throw new Error('fetch failed'); return res.json(); })
+    .then(data => {
+      document.getElementById('search-updated').textContent = `마지막 업데이트: ${data.updatedAt}`;
+      const grid = document.getElementById('search-grid');
+      grid.innerHTML = (data.items || []).map(item => `
+        <a class="rank-card kw-card" href="https://search.naver.com/search.naver?query=${encodeURIComponent(item.keyword)}" target="_blank" rel="noopener">
+          <span class="rank-badge">${item.rank}</span>
+          <div class="kw-word">${item.keyword}</div>
+          <div class="kw-meta">뉴스 ${item.newsCount.toLocaleString('ko-KR')}건 · 블로그 ${item.blogCount.toLocaleString('ko-KR')}건</div>
+        </a>
+      `).join('');
+    })
+    .catch(() => {
+      document.getElementById('search-updated').textContent = '';
+      document.getElementById('search-grid').innerHTML = '<div class="rank-error">검색어 랭킹 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.</div>';
+    });
+</script>
+
+</body>
+</html>

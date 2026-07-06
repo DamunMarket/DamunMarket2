@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>담은마켓 500ml 텀블러 3종세트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-900:#1F3A5F;
+    --blue-700:#3A5F8A;
+    --blue-500:#6E97C2;
+    --blue-300:#A9C3DE;
+    --blue-100:#E4EEF7;
+    --cream-50:#FBF8F3;
+    --cream-100:#F3EEE3;
+    --ink-900:#26313D;
+    --ink-500:#65727D;
+    --line:#DCE6EF;
+    --coral:#E8836B;
+  }
+  html{ width:520px; }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:#D8E3EE; font-family:'Noto Sans KR',sans-serif; color:var(--ink-900);
+    width:520px; overflow-x:hidden;
+  }
+  .page{ width:100%; max-width:520px; background:var(--cream-50); overflow:hidden; }
+  .section{ position:relative; padding:52px 28px; }
+  .eyebrow{
+    font-family:'Noto Sans KR'; font-weight:700; font-size:12px; letter-spacing:.22em;
+    color:var(--blue-500); text-transform:uppercase; margin:0 0 10px;
+  }
+  h1,h2,h3{ font-family:'Noto Serif KR',serif; margin:0; line-height:1.35; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(120% 160% at 15% 0%, var(--blue-500) 0%, var(--blue-700) 46%, var(--blue-900) 100%);
+    color:var(--cream-50); padding:60px 28px 48px; text-align:left;
+  }
+  .hero .badge{
+    display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.4); color:#fff; font-size:12.5px; font-weight:700;
+    padding:6px 14px; border-radius:99px; margin-bottom:20px; letter-spacing:.02em;
+  }
+  .hero h1{ font-size:32px; font-weight:900; color:#fff; margin-bottom:14px; }
+  .hero h1 em{ font-style:normal; color:#FFE7B8; }
+  .hero p{ font-size:15px; line-height:1.75; color:#EAF1F8; max-width:38ch; margin:0 0 26px; }
+  .hero-illust{ display:flex; justify-content:center; margin:10px 0 4px; }
+  .hero-illust img{ width:210px; height:210px; object-fit:contain; border-radius:16px; background:rgba(255,255,255,.08); }
+  .hero-facts{ display:flex; gap:8px; margin-top:22px; flex-wrap:wrap; }
+  .hero-facts span{
+    font-size:12px; color:#fff; border:1px solid rgba(255,255,255,.28);
+    padding:7px 12px; border-radius:8px; background:rgba(255,255,255,.06);
+  }
+  .price-tag{ margin-top:24px; }
+  .price-tag .launch-badge{
+    display:inline-block; background:var(--coral); color:#fff; font-size:13px; font-weight:800;
+    padding:6px 14px; border-radius:99px; margin-bottom:10px; letter-spacing:.01em;
+  }
+  .price-tag .now{ font-size:30px; font-weight:900; color:#fff; }
+  .price-tag .was{ font-size:15px; color:#B9CBE0; text-decoration:line-through; margin-right:8px; }
+  .price-tag .note{ font-size:12px; color:#CFE0EF; margin-top:4px; }
+
+  /* ---------- TRUST BAR ---------- */
+  .trust{ background:var(--blue-100); padding:30px 20px; }
+  .trust-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; text-align:center; }
+  .trust-grid .item{ font-size:12px; color:var(--blue-900); line-height:1.5; }
+  .trust-grid .item b{ display:block; font-size:14.5px; margin-bottom:3px; }
+
+  /* ---------- WHY / PAIN ---------- */
+  .why{ text-align:center; }
+  .why h2{ font-size:23px; color:var(--ink-900); margin-bottom:8px; }
+  .why h2 em{ font-style:normal; color:var(--blue-500); }
+  .why .stat{ font-size:44px; font-weight:900; color:var(--blue-700); font-family:'Noto Serif KR'; margin:18px 0 6px; }
+  .why .stat-label{ font-size:13px; color:var(--ink-500); margin-bottom:26px; }
+  .why-points{ display:flex; flex-direction:column; gap:12px; text-align:left; }
+  .why-points .pt{
+    display:flex; gap:12px; align-items:flex-start; background:var(--cream-100);
+    border-radius:12px; padding:14px 16px; font-size:13.5px; line-height:1.6; color:var(--ink-900);
+  }
+  .why-points .pt .dot{
+    flex:none; width:22px; height:22px; border-radius:50%; background:var(--blue-500);
+    color:#fff; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ---------- SET COMPOSITION ---------- */
+  .compose{ background:var(--blue-900); color:#fff; }
+  .compose .eyebrow{ color:#FFE7B8; }
+  .compose h2{ color:#fff; font-size:22px; margin-bottom:26px; }
+  .compose-grid{ display:flex; flex-direction:column; gap:16px; }
+  .compose-card{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.15);
+    border-radius:14px; padding:18px; display:flex; gap:14px; align-items:center;
+  }
+  .compose-card .num{
+    flex:none; width:34px; height:34px; border-radius:50%; background:#FFE7B8; color:var(--blue-900);
+    font-weight:900; font-family:'Noto Serif KR'; display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .compose-card .thumb{
+    flex:none; width:64px; height:64px; border-radius:10px; background:#fff; overflow:hidden;
+  }
+  .compose-card .thumb img{ width:100%; height:100%; object-fit:cover; }
+  .compose-card .txt b{ display:block; font-size:14.5px; margin-bottom:3px; }
+  .compose-card .txt span{ font-size:12.5px; color:#CFE0EF; line-height:1.5; }
+
+  /* ---------- MATERIAL STORY ---------- */
+  .material{ text-align:center; }
+  .material h2{ font-size:22px; margin-bottom:8px; }
+  .material p.sub{ font-size:13px; color:var(--ink-500); margin-bottom:24px; line-height:1.6; }
+  .m-compare{ display:flex; gap:10px; margin-bottom:16px; }
+  .m-card{ flex:1; border-radius:14px; padding:18px 14px; text-align:left; }
+  .m-card.plain{ background:var(--cream-100); }
+  .m-card.ours{ background:var(--blue-900); color:#fff; border:2px solid var(--blue-500); }
+  .m-card .tag{ font-size:11px; font-weight:700; letter-spacing:.05em; margin-bottom:8px; display:inline-block; padding:3px 9px; border-radius:99px; }
+  .m-card.plain .tag{ background:#E3DACB; color:var(--ink-500); }
+  .m-card.ours .tag{ background:#FFE7B8; color:var(--blue-900); }
+  .m-card .name{ font-family:'Noto Serif KR'; font-size:17px; font-weight:700; margin-bottom:10px; }
+  .m-card ul{ margin:0; padding:0; list-style:none; font-size:12px; line-height:1.9; }
+  .m-card.plain ul{ color:var(--ink-500); }
+  .m-card.ours ul{ color:#DCE9F5; }
+  .material-note{ font-size:11.5px; color:var(--ink-500); line-height:1.7; background:var(--cream-100); padding:12px 14px; border-radius:8px; text-align:left; }
+
+  /* ---------- PERFORMANCE ---------- */
+  .performance{ text-align:center; background:var(--cream-100); }
+  .performance h2{ font-size:22px; margin-bottom:6px; }
+  .performance p.sub{ font-size:13px; color:var(--ink-500); margin-bottom:24px; }
+  .perf-grid{ display:flex; gap:12px; margin-bottom:14px; }
+  .perf-card{ flex:1; background:#fff; border-radius:16px; padding:22px 12px; }
+  .perf-ico{ width:44px; height:44px; border-radius:50%; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .perf-card.hot .perf-ico{ background:#FBE3DC; }
+  .perf-card.cold .perf-ico{ background:var(--blue-100); }
+  .perf-num{ font-family:'Noto Serif KR'; font-size:20px; font-weight:700; color:var(--blue-900); margin-bottom:4px; }
+  .perf-label{ font-size:12px; color:var(--ink-500); }
+  .perf-note{ font-size:11.5px; color:var(--coral); background:#FBEDE8; padding:12px 14px; border-radius:8px; line-height:1.6; text-align:left; margin-bottom:28px; }
+  .twoway-badge{ display:inline-block; background:var(--blue-900); color:#fff; font-size:12px; font-weight:700; padding:6px 14px; border-radius:99px; margin-bottom:16px; }
+  .twoway-grid{ display:flex; gap:12px; }
+  .twoway-card{ flex:1; background:#fff; border:1px dashed var(--line); border-radius:14px; padding:18px 10px; }
+  .twoway-card b{ display:block; font-size:13.5px; margin-bottom:4px; }
+  .twoway-card span{ font-size:11.5px; color:var(--ink-500); }
+
+  /* ---------- COLOR SWATCH ---------- */
+  .colors{ text-align:center; }
+  .colors h2{ font-size:22px; margin-bottom:6px; }
+  .colors p.sub{ font-size:13px; color:var(--ink-500); margin-bottom:26px; }
+  .swatch-row{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .swatch{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .swatch .circle{
+    width:56px; height:56px; border-radius:50%; border:3px solid #fff;
+    box-shadow:0 0 0 1.5px var(--line);
+  }
+  .swatch span{ font-size:11.5px; color:var(--ink-500); }
+  .c-blue{ background:#5A7CA8; } .c-pink{ background:#E7A9B6; } .c-purple{ background:#A99BCB; }
+  .c-dark{ background:#26282B; } .c-white{ background:#F5F5F2; }
+
+  /* ---------- SPEC TABLE ---------- */
+  .spec{ background:var(--cream-100); }
+  .spec h2{ font-size:22px; text-align:center; margin-bottom:22px; }
+  table.spec-table{ width:100%; border-collapse:collapse; font-size:13px; background:#fff; border-radius:10px; overflow:hidden; }
+  table.spec-table th, table.spec-table td{ padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); }
+  table.spec-table th{ width:34%; color:var(--ink-500); font-weight:700; background:var(--blue-100); }
+  table.spec-table tr:last-child th, table.spec-table tr:last-child td{ border-bottom:none; }
+  .spec-note{ margin-top:14px; font-size:11.5px; color:var(--coral); line-height:1.6; background:#FBEDE8; padding:12px 14px; border-radius:8px; }
+
+  /* ---------- USE SCENE ---------- */
+  .scene{ text-align:center; }
+  .scene h2{ font-size:22px; margin-bottom:22px; }
+  .scene-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .scene-card{ background:var(--blue-100); border-radius:12px; padding:20px 10px; font-size:12.5px; color:var(--blue-900); line-height:1.5; }
+  .scene-card .ico{ font-size:26px; margin-bottom:8px; display:block; }
+
+  /* ---------- REVIEW EVENT ---------- */
+  .event{ background:linear-gradient(180deg, var(--blue-100), var(--cream-50)); text-align:center; }
+  .event h2{ font-size:20px; margin-bottom:10px; }
+  .event p{ font-size:13.5px; color:var(--ink-500); line-height:1.7; max-width:36ch; margin:0 auto 18px; }
+  .event .box{
+    display:inline-flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line);
+    border-radius:14px; padding:14px 20px; font-size:13px; font-weight:700; color:var(--blue-900);
+  }
+
+  /* ---------- LEGAL LABEL ---------- */
+  .legal{ background:#fff; }
+  .legal h3{ font-size:15px; text-align:center; margin-bottom:16px; color:var(--ink-900); }
+  table.legal-table{ width:100%; border-collapse:collapse; font-size:12px; }
+  table.legal-table th, table.legal-table td{ padding:9px 10px; border-bottom:1px solid var(--line); text-align:left; }
+  table.legal-table th{ width:32%; color:var(--ink-500); font-weight:700; }
+
+  /* ---------- FAQ ---------- */
+  .faq{ background:var(--cream-100); }
+  .faq h2{ font-size:22px; text-align:center; margin-bottom:20px; }
+  .faq-item{ background:#fff; border-radius:10px; padding:16px; margin-bottom:10px; }
+  .faq-item .q{ font-weight:700; font-size:13.5px; margin-bottom:6px; color:var(--blue-900); }
+  .faq-item .a{ font-size:12.5px; color:var(--ink-500); line-height:1.6; }
+
+  /* ---------- REAL DETAIL CUTS (from 공급사 상세이미지, 사용허용) ---------- */
+  .real-detail{ background:#fff; }
+  .real-detail img{ width:100%; display:block; }
+  .real-detail .credit{
+    font-size:10.5px; color:var(--ink-500); text-align:center; padding:8px 0; background:var(--cream-100);
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{ background:var(--blue-900); color:#fff; text-align:center; padding:48px 28px 56px; }
+  .closing .heart{ font-size:22px; margin-bottom:10px; }
+  .closing h2{ color:#fff; font-size:19px; margin-bottom:10px; }
+  .closing p{ font-size:13px; color:#CFE0EF; line-height:1.7; max-width:34ch; margin:0 auto 18px; }
+  .closing .sign{ font-family:'Noto Serif KR'; font-size:14px; color:#FFE7B8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COMPOSITION -->
+  <section class="section compose">
+    <p class="eyebrow">SET COMPOSITION</p>
+    <h2>3종세트, 이렇게 구성했어요</h2>
+    <div class="compose-grid">
+      <div class="compose-card">
+        <div class="thumb"><img src="https://cdn1.domeggook.com/upload/item/2025/07/17/17527362603D0CBF93AD8AC708588D0A/17527362603D0CBF93AD8AC708588D0A_img_760?hash=bc78ca1dec13e91b235e45ce0d03486e" alt="500ml 텀블러"></div>
+        <div class="txt"><b>500ml 텀블러</b><span>이단 원터치, 스텐316 이중진공 보온보냉 · 하루 물 섭취 목표량에 맞춘 넉넉한 용량</span></div>
+      </div>
+      <div class="compose-card">
+        <div class="thumb"><img src="https://cdn1.domeggook.com/upload/item/2025/07/12/175228530329CE7E27056F607167060D/175228530329CE7E27056F607167060D_img_760?hash=48a5a61b47c8758dbfda3f1fb397c0ef" alt="빨대세척솔"></div>
+        <div class="txt"><b>빨대세척솔</b><span>실리콘 재질, 손 안 닿는 빨대 속까지 위생적으로 세척</span></div>
+      </div>
+      <div class="compose-card">
+        <div class="thumb"><img src="https://cdn1.domeggook.com/upload/item/2025/02/13/1739427508BF68C4A57EB052D24E3829/1739427508BF68C4A57EB052D24E3829_img_760?hash=a446bb9547cc6dc13548d9f08ecacfc9" alt="텀블러세척솔"></div>
+        <div class="txt"><b>텀블러세척솔</b><span>22cm 롱스펀지, 텀블러 안쪽과 뚜껑 틈새까지 꼼꼼하게</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO -->
+  <section class="section hero">
+    <div class="badge">담은마켓 · 물 습관 시리즈</div>
+    <h1>매일 물 한 잔,<br><em>습관 하나</em> 시작해요</h1>
+    <p>500ml 텀블러 + 빨대세척솔 + 텀블러세척솔까지, 오늘부터 물 잘 챙겨 마시는 습관을 한 번에 시작할 수 있는 3종세트예요.</p>
+    <div class="hero-illust">
+      <img src="https://cdn1.domeggook.com/upload/item/2025/07/17/17527362603D0CBF93AD8AC708588D0A/17527362603D0CBF93AD8AC708588D0A_img_760?hash=bc78ca1dec13e91b235e45ce0d03486e" alt="500ml 이단 원터치 텀블러 스텐316">
+    </div>
+    <div class="price-tag">
+      <div class="launch-badge">🎉 런칭 기념 특가</div>
+      <span class="was">24,900원</span>
+      <span class="now">19,900원</span>
+    </div>
+    <div class="hero-facts">
+      <span>500ml 대용량</span>
+      <span>세척솔 2종 포함</span>
+      <span>색상 5종</span>
+    </div>
+  </section>
+
+  <!-- REAL DETAIL CUTS -->
+  <section class="real-detail">
+    <img src="https://gi.esmplus.com/skdhwnd7/%EB%B3%80/%ED%85%80%EB%B8%94%EB%9F%AC%20%EC%9D%B4%EB%8B%A8%20%EC%9B%90%ED%84%B0%EC%B9%98%20%ED%85%80%EB%B8%94%EB%9F%AC/1.png" alt="316 스테인레스 이단 원터치 500ml 텀블러 상세컷 1">
+    <img src="https://gi.esmplus.com/skdhwnd7/%EB%B3%80/%ED%85%80%EB%B8%94%EB%9F%AC%20%EC%9D%B4%EB%8B%A8%20%EC%9B%90%ED%84%B0%EC%B9%98%20%ED%85%80%EB%B8%94%EB%9F%AC/2.png" alt="316 스테인레스 이단 원터치 500ml 텀블러 상세컷 2">
+    <img src="https://gi.esmplus.com/skdhwnd7/%EB%B3%80/%ED%85%80%EB%B8%94%EB%9F%AC%20%EC%9D%B4%EB%8B%A8%20%EC%9B%90%ED%84%B0%EC%B9%98%20%ED%85%80%EB%B8%94%EB%9F%AC/33.png" alt="316 스테인레스 이단 원터치 500ml 텀블러 상세컷 3">
+    <img src="https://gi.esmplus.com/skdhwnd7/%EB%B3%80/%ED%85%80%EB%B8%94%EB%9F%AC%20%EC%9D%B4%EB%8B%A8%20%EC%9B%90%ED%84%B0%EC%B9%98%20%ED%85%80%EB%B8%94%EB%9F%AC/4.png" alt="316 스테인레스 이단 원터치 500ml 텀블러 상세컷 4">
+    <img src="https://gi.esmplus.com/skdhwnd7/%EB%B3%80/%ED%85%80%EB%B8%94%EB%9F%AC%20%EC%9D%B4%EB%8B%A8%20%EC%9B%90%ED%84%B0%EC%B9%98%20%ED%85%80%EB%B8%94%EB%9F%AC/66.png" alt="316 스테인레스 이단 원터치 500ml 텀블러 상세컷 5">
+    <div class="credit">본 상세이미지는 매입처(이우드림무역)로부터 사용을 허가받은 이미지입니다</div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust">
+    <div class="trust-grid">
+      <div class="item"><b>3종 구성</b>따로 안 사도 OK</div>
+      <div class="item"><b>하루 2L</b>습관 형성 서포트</div>
+      <div class="item"><b>색상 5종</b>취향껏 선택</div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section why">
+    <p class="eyebrow" style="color:var(--blue-500)">왜 텀블러 습관일까요</p>
+    <h2>우리 몸의 <em>70%</em>는<br>물로 채워져 있대요</h2>
+    <div class="stat">하루 2L</div>
+    <div class="stat-label">별거 아닌 것 같아도 피부 컨디션, 피로도, 몸의 순환까지 달라져요</div>
+    <div class="why-points">
+      <div class="pt"><span class="dot">1</span>물병을 매번 씻기 귀찮아서 물 마시는 습관이 흐지부지된 적, 다들 있으시죠</div>
+      <div class="pt"><span class="dot">2</span>그래서 텀블러 하나에 전용 세척솔까지 같이 담았어요, 뚜껑 틈·빨대까지 깨끗하게</div>
+      <div class="pt"><span class="dot">3</span>매일 곁에 두고 쓰는 물건이라, 5가지 색상 중 제일 마음에 드는 걸로 골라보세요</div>
+    </div>
+  </section>
+
+  <!-- MATERIAL STORY -->
+  <section class="section material">
+    <p class="eyebrow" style="color:var(--blue-500)">MATERIAL</p>
+    <h2>흔한 스텐304 대신,<br>한 단계 위 스텐316</h2>
+    <p class="sub">시중 텀블러 대부분은 스텐304를 씁니다. 담은마켓은 몰리브덴이 추가된 스텐316을 사용했어요.</p>
+    <div class="m-compare">
+      <div class="m-card plain">
+        <span class="tag">흔한 소재</span>
+        <div class="name">스텐304</div>
+        <ul>
+          <li>· 크롬 16% + 니켈 8~10%</li>
+          <li>· 몰리브덴 미함유</li>
+          <li>· 저가형 텀블러·주방용품에 흔히 사용</li>
+        </ul>
+      </div>
+      <div class="m-card ours">
+        <span class="tag">담은마켓 사용</span>
+        <div class="name">스텐316</div>
+        <ul>
+          <li>· 크롬 16% + 니켈 10% + 몰리브덴 2~3%</li>
+          <li>· 염분·산성 성분에 더 강한 내식성</li>
+          <li>· 의료기기·해양산업에도 쓰이는 고급 소재</li>
+        </ul>
+      </div>
+    </div>
+    <div class="material-note">
+      ℹ 304도 식품용으로 안전한 소재예요. 다만 몰리브덴이 더해진 316은 부식·산화에 더 강해서, 과일에이드·탄산처럼 산성 음료를 자주 담거나 오래 쓸수록 차이가 체감돼요. (특정 질병 예방·치료 효과를 의미하는 것은 아니며, 소재 자체의 내식성 특성을 설명한 것입니다.)
+    </div>
+  </section>
+
+  <!-- COLORS -->
+  <section class="section colors">
+    <h2>색상 5종</h2>
+    <p class="sub">매일 쓰는 물건이니까, 마음에 드는 색으로</p>
+    <div class="swatch-row">
+      <div class="swatch"><div class="circle c-white"></div><span>화이트</span></div>
+      <div class="swatch"><div class="circle c-dark"></div><span>블랙</span></div>
+      <div class="swatch"><div class="circle c-purple"></div><span>퍼플</span></div>
+      <div class="swatch"><div class="circle c-pink"></div><span>핑크</span></div>
+      <div class="swatch"><div class="circle c-blue"></div><span>블루</span></div>
+    </div>
+  </section>
+
+  <!-- SPEC -->
+  <section class="section spec">
+    <h2>제품 상세 정보</h2>
+    <table class="spec-table">
+      <tr><th>용량</th><td>500ml</td></tr>
+      <tr><th>크기 / 무게</th><td>높이 22.5cm · 지름 7cm · 무게 256g</td></tr>
+      <tr><th>구성</th><td>텀블러 1개 + 빨대세척솔 1개 + 텀블러세척솔 1개</td></tr>
+      <tr><th>색상</th><td>화이트 / 블랙 / 퍼플 / 핑크 / 블루 (5종 중 택 1)</td></tr>
+      <tr><th>재질</th><td>텀블러 본체 스테인리스 스틸(STS316, 이중진공) · 빨대세척솔 실리콘</td></tr>
+      <tr><th>원산지</th><td>중국</td></tr>
+      <tr><th>세척방법</th><td>동봉된 빨대세척솔·텀블러세척솔로 중성세제 사용 후 완전 건조 권장</td></tr>
+    </table>
+  </section>
+
+  <!-- USE SCENE -->
+  <section class="section scene">
+    <h2>이럴 때 딱이에요</h2>
+    <div class="scene-grid">
+      <div class="scene-card"><span class="ico">🏢</span>출근길 데스크 위에 하나</div>
+      <div class="scene-card"><span class="ico">🏋️</span>운동할 때 물 섭취 체크</div>
+      <div class="scene-card"><span class="ico">🚗</span>차박·캠핑 필수템</div>
+      <div class="scene-card"><span class="ico">🎁</span>실속 있는 선물용</div>
+    </div>
+  </section>
+
+  <!-- REVIEW EVENT -->
+  <section class="section event">
+    <h2>후기 남기면 커피 쏩니다 ☕</h2>
+    <p>작게 시작한 브랜드라 후기 한 줄, 별점 하나가 정말 큰 힘이 돼요. 사용 후기 남겨주시면 매주 추첨을 통해 커피기프티콘을 드려요.</p>
+    <div class="box">📮 상품 수령 후 리뷰 작성 → 매주 추첨 발표</div>
+  </section>
+
+  <!-- LEGAL -->
+  <section class="section legal">
+    <h3>상품 필수 표시정보</h3>
+    <table class="legal-table">
+      <tr><th>품명 및 모델명</th><td>[상품명 / 모델명 기재]</td></tr>
+      <tr><th>재질</th><td>스테인리스 스틸(STS316) · 실리콘(빨대세척솔) · [텀블러세척솔 재질 확인 필요]</td></tr>
+      <tr><th>제조국</th><td>중국</td></tr>
+      <tr><th>제조자/수입자</th><td>담은마켓 [사업자 상세 기재]</td></tr>
+      <tr><th>취급 시 주의사항</th><td>[직사광선 노출 금지, 전자레인지 사용 불가 등 실제 자재 특성에 맞게 기재]</td></tr>
+      <tr><th>품질보증기준</th><td>[관련 법령에 따른 배상 안내 기재]</td></tr>
+      <tr><th>A/S 책임자</th><td>담은마켓 고객센터</td></tr>
+    </table>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq">
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-item"><div class="q">Q. 빨대세척솔·텀블러세척솔은 각 몇 개씩 오나요?</div><div class="a">A. 세트당 빨대세척솔 1개, 텀블러세척솔 1개가 함께 옵니다.</div></div>
+    <div class="faq-item"><div class="q">Q. 뜨거운 음료도 담을 수 있나요?</div><div class="a">A. [매입처 자재 성적서 확인 후 내열 온도 범위를 정확히 기재해주세요.]</div></div>
+    <div class="faq-item"><div class="q">Q. 색상 변경이나 교환이 가능한가요?</div><div class="a">A. 미개봉 상품에 한해 수령 후 7일 이내 교환·반품이 가능합니다.</div></div>
+    <div class="faq-item"><div class="q">Q. 가방에 넣고 다녀도 물이 새지 않나요?</div><div class="a">A. 빨대 입구와 음용구 입구에 각각 실리콘 마개로 밀폐 구조가 되어 있어 기본적으로 새지 않도록 설계됐어요. (버튼 눌림을 막는 별도 잠금 고리가 있는지는 실제 제품 확인 후 보완할게요.)</div></div>
+    <div class="faq-item"><div class="q">Q. 스텐316이라 무겁지는 않나요?</div><div class="a">A. SUS304와 SUS316은 무게가 아니라 부식에 강한 정도(성분)가 다른 거예요. 이 제품은 256g으로, 아이폰14 Pro Max(케이스 포함 약 240g대)와 비슷하거나 조금 무거운 정도의 가벼운 무게예요.</div></div>
+    <div class="faq-item"><div class="q">Q. 세척은 쉬운가요?</div><div class="a">A. 입구가 넓은 편(지름 약 70mm)이라 손이 들어가 안쪽까지 직접 닦을 수 있어요. 동봉된 빨대세척솔·텀블러세척솔로 구석구석 세척해주세요. [식기세척기 사용 가능 여부는 매입처 확인 후 표시 — 진공단열 제품은 식기세척기 사용 시 손상될 수 있어 확인 전까지는 "사용 불가"로 안내하는 게 안전해요.]</div></div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="heart">❤</div>
+    <h2>오늘도 잘 챙겨마셔요</h2>
+    <p>매일 물 잘 챙겨 마시는 습관, 이 텀블러가 함께할게요. 구매해주셔서 진심으로 감사합니다.</p>
+    <div class="sign">담은마켓 드림</div>
+  </section>
+
+</div>
+</body>
+</html>
