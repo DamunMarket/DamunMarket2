@@ -40,7 +40,7 @@
     background:rgba(251,246,239,.85); border-bottom:1px solid var(--line);
   }
   .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1120px; margin:0 auto; }
-  .logo{ font-family:'Noto Serif KR'; font-weight:900; font-size:20px; letter-spacing:-.01em; color:var(--clay-900); }
+  .logo{ font-family:'Noto Serif KR'; font-weight:900; font-size:20px; letter-spacing:-.01em; color:var(--clay-900); white-space:nowrap; }
   .nav-links{ display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--ink-500); }
   .nav-links a:hover{ color:var(--clay-700); }
   .nav-cta{
@@ -49,15 +49,18 @@
   }
   .nav-right{ display:flex; align-items:center; gap:14px; }
   .visitor-counter{
-    display:flex; gap:10px; align-items:center; background:rgba(255,255,255,.65); border:1px solid var(--clay-300);
-    border-radius:99px; padding:6px 14px; white-space:nowrap;
+    display:flex; flex-direction:column; align-items:center; gap:4px; background:rgba(255,255,255,.7);
+    border:1px solid var(--clay-300); border-radius:14px; padding:7px 16px; white-space:nowrap; line-height:1.1;
   }
-  .visitor-counter .vc-item{ display:flex; flex-direction:column; align-items:center; line-height:1.1; }
-  .visitor-counter .vc-label{ font-size:9px; font-weight:700; letter-spacing:.08em; color:var(--ink-500); text-transform:uppercase; }
-  .visitor-counter .vc-num{ font-family:'Noto Serif KR'; font-weight:700; font-size:14px; color:var(--clay-700); }
-  .visitor-counter .vc-divider{ width:1px; height:22px; background:var(--clay-300); }
+  .visitor-counter .vc-date{ font-size:10.5px; font-weight:700; color:var(--clay-700); letter-spacing:.01em; }
+  .visitor-counter .vc-stats{ display:flex; align-items:center; gap:12px; }
+  .visitor-counter .vc-item{ display:flex; align-items:baseline; gap:5px; }
+  .visitor-counter .vc-label{ font-size:11px; font-weight:600; color:var(--ink-500); }
+  .visitor-counter .vc-num{ font-family:'Noto Serif KR'; font-weight:700; font-size:14px; color:var(--clay-900); }
+  .visitor-counter .vc-num::after{ content:'명'; font-family:'Noto Sans KR'; font-size:10px; font-weight:600; color:var(--ink-500); margin-left:1px; }
+  .visitor-counter .vc-divider{ width:1px; height:16px; background:var(--clay-300); }
   @media (max-width:720px){ .nav-links{ display:none; } }
-  @media (max-width:520px){ .nav-cta{ display:none; } .visitor-counter{ padding:5px 12px; } .visitor-counter .vc-num{ font-size:13px; } }
+  @media (max-width:520px){ .nav-cta{ display:none; } .visitor-counter{ padding:6px 12px; } .visitor-counter .vc-label{ font-size:10px; } .visitor-counter .vc-stats{ gap:9px; } }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -212,14 +215,17 @@
       </nav>
       <div class="nav-right">
         <div class="visitor-counter" id="visitor-counter" title="localStorage 기준 방문자 수 (같은 브라우저는 하루 1회 집계)">
-          <div class="vc-item">
-            <span class="vc-label">오늘</span>
-            <span class="vc-num" id="vc-today">–</span>
-          </div>
-          <div class="vc-divider"></div>
-          <div class="vc-item">
-            <span class="vc-label">누적</span>
-            <span class="vc-num" id="vc-total">–</span>
+          <div class="vc-date" id="vc-date">–</div>
+          <div class="vc-stats">
+            <div class="vc-item">
+              <span class="vc-label">일간 방문자</span>
+              <span class="vc-num" id="vc-today">–</span>
+            </div>
+            <div class="vc-divider"></div>
+            <div class="vc-item">
+              <span class="vc-label">누적 방문자</span>
+              <span class="vc-num" id="vc-total">–</span>
+            </div>
           </div>
         </div>
         <a class="nav-cta" href="#" data-note="실제 쿠팡 스토어 URL로 교체">쿠팡에서 만나보기</a>
@@ -429,6 +435,10 @@
     const BASE = 'https://abacus.jasoncameron.dev';
     const todayKST = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Seoul' }); // YYYY-MM-DD
     const fmt = n => Number(n).toLocaleString('ko-KR');
+
+    // 오늘 날짜를 "2026년 7월 7일" 형태로 표시
+    document.getElementById('vc-date').textContent =
+      new Date().toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: 'long', day: 'numeric' });
 
     async function counter(action, key) {
       const res = await fetch(`${BASE}/${action}/${NS}/${key}`);
