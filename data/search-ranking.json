@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-07-06",
-  "updatedAtIso": "2026-07-06T22:07:09.237028+09:00",
+  "updatedAtIso": "2026-07-06T22:51:35.544495+09:00",
   "source": "네이버 뉴스·블로그·데이터랩 기준 (네이버 공식 실시간 검색순위가 아닙니다)",
   "method": "오늘자 뉴스 제목·요약에서 키워드 후보를 추출한 뒤, 데이터랩 검색어트렌드로 최근 상승폭이 큰 순으로 정렬했습니다.",
   "items": [
@@ -9,51 +9,43 @@
       "keyword": "이병태",
       "growthScore": 78.87,
       "recentRatio": 58.14863,
-      "newsCount": 11919,
-      "blogCount": 12007
+      "newsCount": 11926,
+      "blogCount": 12012
     },
     {
       "rank": 2,
-      "keyword": "혐오",
-      "growthScore": 0.89,
-      "recentRatio": 8.1103,
-      "newsCount": 423483,
-      "blogCount": 1372526
+      "keyword": "성역",
+      "growthScore": 0.94,
+      "recentRatio": 0.73962,
+      "newsCount": 140693,
+      "blogCount": 151461
     },
     {
       "rank": 3,
-      "keyword": "연예인",
-      "growthScore": 0.23,
-      "recentRatio": 7.93321,
-      "newsCount": 1734797,
-      "blogCount": 7538469
+      "keyword": "파운데이션",
+      "growthScore": 0.82,
+      "recentRatio": 11.05354,
+      "newsCount": 172994,
+      "blogCount": 1339987
     },
     {
       "rank": 4,
-      "keyword": "파운데이션",
-      "growthScore": 0.13,
-      "recentRatio": 1.81543,
-      "newsCount": 172994,
-      "blogCount": 1339967
+      "keyword": "연예인",
+      "growthScore": 0.04,
+      "recentRatio": 1.30295,
+      "newsCount": 1734800,
+      "blogCount": 7538497
     },
     {
       "rank": 5,
-      "keyword": "본질",
-      "growthScore": 0.04,
-      "recentRatio": 9.48905,
-      "newsCount": 1237378,
-      "blogCount": 4936607
+      "keyword": "혐오",
+      "growthScore": 0.01,
+      "recentRatio": 0.0479,
+      "newsCount": 423488,
+      "blogCount": 1372555
     },
     {
       "rank": 6,
-      "keyword": "매탄초",
-      "growthScore": -0.0,
-      "recentRatio": 0.00379,
-      "newsCount": 331,
-      "blogCount": 4265
-    },
-    {
-      "rank": 7,
       "keyword": "학교복합시설",
       "growthScore": -0.0,
       "recentRatio": 0.00443,
@@ -61,28 +53,36 @@
       "blogCount": 33445
     },
     {
+      "rank": 7,
+      "keyword": "매탄초",
+      "growthScore": -0.01,
+      "recentRatio": 0.01134,
+      "newsCount": 331,
+      "blogCount": 4266
+    },
+    {
       "rank": 8,
-      "keyword": "민선",
-      "growthScore": -0.05,
-      "recentRatio": 0.12291,
-      "newsCount": 1246018,
-      "blogCount": 307547
+      "keyword": "박윤영",
+      "growthScore": -0.01,
+      "recentRatio": 0.02299,
+      "newsCount": 13422,
+      "blogCount": 4974
     },
     {
       "rank": 9,
       "keyword": "징계",
-      "growthScore": -0.07,
-      "recentRatio": 0.13804,
-      "newsCount": 1385250,
-      "blogCount": 1230946
+      "growthScore": -0.02,
+      "recentRatio": 0.0462,
+      "newsCount": 1385259,
+      "blogCount": 1230941
     },
     {
       "rank": 10,
       "keyword": "연예계",
       "growthScore": -0.07,
       "recentRatio": 0.14968,
-      "newsCount": 845517,
-      "blogCount": 911124
+      "newsCount": 845521,
+      "blogCount": 911157
     }
   ]
 }
