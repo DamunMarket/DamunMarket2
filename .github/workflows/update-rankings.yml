@@ -5,6 +5,8 @@ on:
     # 매일 22:00 UTC = 07:00 KST
     - cron: "0 22 * * *"
   workflow_dispatch: {}
+  push:
+    branches: [main]
 
 # 데이터 커밋(contents) + Pages 배포(pages, id-token)에 필요한 권한
 permissions:

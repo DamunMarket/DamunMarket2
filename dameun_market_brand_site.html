@@ -141,8 +141,12 @@
   .ranking-head .eyebrow{ color:var(--clay-700); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:10px; display:block; }
   .ranking-head h2{ font-size:clamp(26px,3.6vw,36px); }
   .ranking-updated{ font-size:12.5px; color:var(--ink-500); background:#fff; border:1px solid var(--line); padding:6px 14px; border-radius:99px; white-space:nowrap; }
-  .ranking-note{ font-size:12.5px; color:var(--ink-500); line-height:1.7; margin-bottom:36px; max-width:70ch; }
+  .ranking-note{ font-size:12.5px; color:var(--ink-500); line-height:1.7; margin-bottom:24px; max-width:70ch; }
   .ranking-note strong{ color:var(--clay-700); }
+  .cat-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+  .cat-tab{ font-size:13px; font-weight:600; color:var(--ink-500); background:#fff; border:1px solid var(--line); padding:8px 16px; border-radius:99px; cursor:pointer; transition:all .18s ease; white-space:nowrap; }
+  .cat-tab:hover{ border-color:var(--clay-300); color:var(--clay-700); }
+  .cat-tab.active{ background:var(--clay-900); border-color:var(--clay-900); color:#fff; }
   .rank-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
   @media (max-width:960px){ .rank-grid{ grid-template-columns:repeat(3,1fr); } }
   @media (max-width:640px){ .rank-grid{ grid-template-columns:repeat(2,1fr); } }
@@ -307,9 +311,10 @@
         <span class="ranking-updated" id="coupang-updated">업데이트 확인 중…</span>
       </div>
       <p class="ranking-note reveal">
-        쿠팡 파트너스 Open API의 생활용품·주방용품·홈인테리어 베스트 카테고리를 매일 새벽 자동으로 모아 만든 Top10이에요.
+        쿠팡 파트너스 Open API의 카테고리별 베스트 상품을 매일 새벽 자동으로 모아, 15개 카테고리마다 Top10을 보여드려요. 아래 카테고리를 눌러 확인하세요.
         <strong>이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</strong>
       </p>
+      <div class="cat-tabs reveal" id="coupang-tabs"></div>
       <div class="rank-grid reveal" id="coupang-grid">
         <div class="rank-loading">랭킹을 불러오는 중이에요…</div>
       </div>
@@ -450,21 +455,41 @@
     });
   })();
 
-  // ---------- 오늘의 쿠팡 랭킹 ----------
+  // ---------- 오늘의 쿠팡 랭킹 (카테고리별 Top10) ----------
   fetch('data/coupang-ranking.json', { cache: 'no-store' })
     .then(res => { if(!res.ok) throw new Error('fetch failed'); return res.json(); })
     .then(data => {
       document.getElementById('coupang-updated').textContent = `마지막 업데이트: ${data.updatedAt}`;
-      const grid = document.getElementById('coupang-grid');
-      grid.innerHTML = (data.items || []).map(item => `
-        <a class="rank-card" href="${item.productUrl}" target="_blank" rel="noopener sponsored">
-          <span class="rank-badge">${item.rank}</span>
-          <div class="rank-img"><img src="${item.productImage}" alt="${item.productName}" loading="lazy"></div>
-          ${item.isRocket ? '<span class="rank-rocket">로켓배송</span>' : ''}
-          <div class="rank-name">${item.productName}</div>
-          <div class="rank-price">${Math.round(item.productPrice).toLocaleString('ko-KR')}원</div>
-        </a>
-      `).join('');
+      const tabsEl = document.getElementById('coupang-tabs');
+      const gridEl = document.getElementById('coupang-grid');
+      const categories = data.categories || [];
+      if (!categories.length) throw new Error('no categories');
+
+      const renderGrid = (cat) => {
+        gridEl.innerHTML = cat.items.map(item => `
+          <a class="rank-card" href="${item.productUrl}" target="_blank" rel="noopener sponsored">
+            <span class="rank-badge">${item.rank}</span>
+            <div class="rank-img"><img src="${item.productImage}" alt="${item.productName}" loading="lazy"></div>
+            ${item.isRocket ? '<span class="rank-rocket">로켓배송</span>' : ''}
+            <div class="rank-name">${item.productName}</div>
+            <div class="rank-price">${Math.round(item.productPrice).toLocaleString('ko-KR')}원</div>
+          </a>
+        `).join('');
+      };
+
+      tabsEl.innerHTML = categories.map((cat, i) =>
+        `<button class="cat-tab${i === 0 ? ' active' : ''}" data-idx="${i}">${cat.label}</button>`
+      ).join('');
+
+      tabsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.cat-tab');
+        if (!btn) return;
+        tabsEl.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGrid(categories[Number(btn.dataset.idx)]);
+      });
+
+      renderGrid(categories[0]);
     })
     .catch(() => {
       document.getElementById('coupang-updated').textContent = '';
