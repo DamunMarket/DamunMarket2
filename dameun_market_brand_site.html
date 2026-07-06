@@ -47,7 +47,17 @@
     background:var(--clay-900); color:#fff; padding:10px 20px; border-radius:99px; font-size:13.5px; font-weight:700;
     white-space:nowrap;
   }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .visitor-counter{
+    display:flex; gap:10px; align-items:center; background:rgba(255,255,255,.65); border:1px solid var(--clay-300);
+    border-radius:99px; padding:6px 14px; white-space:nowrap;
+  }
+  .visitor-counter .vc-item{ display:flex; flex-direction:column; align-items:center; line-height:1.1; }
+  .visitor-counter .vc-label{ font-size:9px; font-weight:700; letter-spacing:.08em; color:var(--ink-500); text-transform:uppercase; }
+  .visitor-counter .vc-num{ font-family:'Noto Serif KR'; font-weight:700; font-size:14px; color:var(--clay-700); }
+  .visitor-counter .vc-divider{ width:1px; height:22px; background:var(--clay-300); }
   @media (max-width:720px){ .nav-links{ display:none; } }
+  @media (max-width:520px){ .nav-cta{ display:none; } .visitor-counter{ padding:5px 12px; } .visitor-counter .vc-num{ font-size:13px; } }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -178,7 +188,8 @@
   .foot-info{ font-size:12px; color:var(--ink-500); line-height:1.8; }
   .foot-links{ display:flex; gap:20px; font-size:13px; color:var(--ink-500); }
   .foot-links a:hover{ color:var(--clay-700); }
-  .foot-bottom{ max-width:1120px; margin:32px auto 0; padding-top:20px; border-top:1px solid var(--line); font-size:11.5px; color:var(--ink-500); }
+  .foot-disclosure{ max-width:1120px; margin:28px auto 0; padding:14px 18px; background:var(--sand-200); border-radius:12px; font-size:12px; color:var(--clay-900); font-weight:600; line-height:1.6; }
+  .foot-bottom{ max-width:1120px; margin:16px auto 0; padding-top:20px; border-top:1px solid var(--line); font-size:11.5px; color:var(--ink-500); }
 </style>
 </head>
 <body>
@@ -195,7 +206,20 @@
         <a href="#featured">지금 담은 아이템</a>
         <a href="#contact">문의</a>
       </nav>
-      <a class="nav-cta" href="#" data-note="실제 쿠팡 스토어 URL로 교체">쿠팡에서 만나보기</a>
+      <div class="nav-right">
+        <div class="visitor-counter" id="visitor-counter" title="localStorage 기준 방문자 수 (같은 브라우저는 하루 1회 집계)">
+          <div class="vc-item">
+            <span class="vc-label">오늘</span>
+            <span class="vc-num" id="vc-today">–</span>
+          </div>
+          <div class="vc-divider"></div>
+          <div class="vc-item">
+            <span class="vc-label">누적</span>
+            <span class="vc-num" id="vc-total">–</span>
+          </div>
+        </div>
+        <a class="nav-cta" href="#" data-note="실제 쿠팡 스토어 URL로 교체">쿠팡에서 만나보기</a>
+      </div>
     </div>
   </header>
 
@@ -376,6 +400,9 @@
         <a href="#contact">문의하기</a>
       </div>
     </div>
+    <div class="foot-disclosure wrap">
+      담은마켓은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+    </div>
     <div class="foot-bottom wrap">
       © 2026 담은마켓. All rights reserved.
     </div>
@@ -388,6 +415,40 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold:.15 });
   els.forEach(el=>io.observe(el));
+
+  // ---------- 방문자 카운터 (오늘 / 누적) ----------
+  // 정적 사이트라 서버가 없어 무료 카운터 API(Abacus)를 사용한다.
+  // 같은 브라우저의 중복 집계는 localStorage로 막아 '고유 방문자'에 가깝게 센다.
+  (function () {
+    const NS = 'dameunmarket-chw-2f9a7c1b';           // 이 사이트 전용 네임스페이스
+    const BASE = 'https://abacus.jasoncameron.dev';
+    const todayKST = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Seoul' }); // YYYY-MM-DD
+    const fmt = n => Number(n).toLocaleString('ko-KR');
+
+    async function counter(action, key) {
+      const res = await fetch(`${BASE}/${action}/${NS}/${key}`);
+      if (!res.ok) throw new Error('counter failed');
+      return (await res.json()).value;
+    }
+
+    async function resolve(key, seenFlag, seenValue) {
+      // 이미 집계한 방문자면 증가 없이 조회(get), 처음이면 증가(hit)
+      if (localStorage.getItem(seenFlag) === seenValue) {
+        return counter('get', key);
+      }
+      const value = await counter('hit', key);
+      localStorage.setItem(seenFlag, seenValue);
+      return value;
+    }
+
+    Promise.allSettled([
+      resolve('total', 'dm_visited_ever', '1'),
+      resolve('day-' + todayKST, 'dm_visited_day', todayKST),
+    ]).then(([total, today]) => {
+      if (total.status === 'fulfilled') document.getElementById('vc-total').textContent = fmt(total.value);
+      if (today.status === 'fulfilled') document.getElementById('vc-today').textContent = fmt(today.value);
+    });
+  })();
 
   // ---------- 오늘의 쿠팡 랭킹 ----------
   fetch('data/coupang-ranking.json', { cache: 'no-store' })
