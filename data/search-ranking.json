@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-07-07",
-  "updatedAtIso": "2026-07-07T07:59:42.225386+09:00",
+  "updatedAtIso": "2026-07-07T08:21:14.127934+09:00",
   "source": "네이버 뉴스·블로그·데이터랩 기준 (네이버 공식 실시간 검색순위가 아닙니다)",
   "method": "오늘자 뉴스 제목·요약에서 키워드 후보를 추출한 뒤, 데이터랩 검색어트렌드로 최근 상승폭이 큰 순으로 정렬했습니다.",
   "items": [
@@ -9,80 +9,80 @@
       "keyword": "캐나다",
       "growthScore": 20.95,
       "recentRatio": 100,
-      "newsCount": 1964623,
-      "blogCount": 4378126
+      "newsCount": 1964683,
+      "blogCount": 4378209
     },
     {
       "rank": 2,
-      "keyword": "나토",
-      "growthScore": 2.9,
-      "recentRatio": 5.91268,
-      "newsCount": 227921,
-      "blogCount": 223898
-    },
-    {
-      "rank": 3,
       "keyword": "파운데이션",
       "growthScore": 1.18,
       "recentRatio": 11.05354,
-      "newsCount": 173002,
-      "blogCount": 1340346
+      "newsCount": 173004,
+      "blogCount": 1340366
     },
     {
-      "rank": 4,
+      "rank": 3,
       "keyword": "연예인",
       "growthScore": 0.71,
       "recentRatio": 7.93321,
-      "newsCount": 1734846,
-      "blogCount": 7539118
+      "newsCount": 1734856,
+      "blogCount": 7539197
+    },
+    {
+      "rank": 4,
+      "keyword": "나토",
+      "growthScore": 0.08,
+      "recentRatio": 0.16478,
+      "newsCount": 227955,
+      "blogCount": 223930
     },
     {
       "rank": 5,
-      "keyword": "이수지",
-      "growthScore": 0.16,
-      "recentRatio": 0.77507,
-      "newsCount": 60240,
-      "blogCount": 78048
+      "keyword": "연예계",
+      "growthScore": -0.0,
+      "recentRatio": 0.00622,
+      "newsCount": 845543,
+      "blogCount": 911557
     },
     {
       "rank": 6,
-      "keyword": "연예계",
+      "keyword": "메모리",
       "growthScore": -0.0,
-      "recentRatio": 0.00822,
-      "newsCount": 845541,
-      "blogCount": 911513
+      "recentRatio": 0.21202,
+      "newsCount": 988322,
+      "blogCount": 4673276
     },
     {
       "rank": 7,
-      "keyword": "박윤영",
-      "growthScore": -0.0,
-      "recentRatio": 0.02299,
-      "newsCount": 13432,
-      "blogCount": 4985
+      "keyword": "저력",
+      "growthScore": -0.02,
+      "recentRatio": 0.02594,
+      "newsCount": 672721,
+      "blogCount": 551064
     },
     {
       "rank": 8,
-      "keyword": "매탄초",
-      "growthScore": -0.01,
-      "recentRatio": 0.00287,
-      "newsCount": 334,
-      "blogCount": 4265
+      "keyword": "피지컬",
+      "growthScore": -0.05,
+      "recentRatio": 0.10347,
+      "newsCount": 326822,
+      "blogCount": 1021946
     },
     {
       "rank": 9,
-      "keyword": "정보보안",
-      "growthScore": -0.01,
-      "recentRatio": 0.00479,
-      "newsCount": 407084,
-      "blogCount": 385195
+      "keyword": "박윤영",
+      "growthScore": -0.15,
+      "recentRatio": 0.82502,
+      "newsCount": 13433,
+      "blogCount": 4985
     },
     {
       "rank": 10,
-      "keyword": "징계",
-      "growthScore": -0.03,
-      "recentRatio": 0.0462,
-      "newsCount": 1385428,
-      "blogCount": 1231061
+      "keyword": "벨기에",
+      "growthScore": -0.49,
+      "recentRatio": 1.08671,
+      "newsCount": 576639,
+      "blogCount": 994241
     }
   ]
 }
