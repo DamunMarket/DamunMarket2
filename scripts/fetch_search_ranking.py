@@ -1,9 +1,10 @@
-"""네이버 뉴스·블로그 검색 API + 데이터랩 검색어트렌드 API로 '오늘의 검색어 랭킹' Top10을 만든다.
+"""네이버 뉴스·블로그 검색 API + 데이터랩 검색어트렌드 API로 '분야별 오늘의 검색어 랭킹'을 만든다.
 
 네이버는 2021년에 공식 실시간 검색순위 API 서비스를 종료했다. 그래서 이 스크립트는:
-  1) 뉴스 검색 API로 오늘자 여러 분야 뉴스 제목/요약에서 자주 등장하는 키워드 후보를 다수 뽑고,
-  2) 데이터랩 검색어트렌드 API로 각 후보 키워드의 최근 검색량 추이를 조회해서
-  3) 상승세(최근 대비 증가폭)가 뚜렷한 상위 10개를 뽑는다.
+  1) 분야별 뉴스 검색으로 오늘자 화제 키워드 후보를 뽑고,
+  2) 데이터랩 검색어트렌드 API로 각 후보의 최근 검색량 추이를 조회해서
+  3) 상승세(최근 대비 증가폭)가 뚜렷한 상위 10개를 분야별 Top10으로 만든다.
+'전체' 탭은 모든 분야 후보를 합쳐 상승폭 기준 Top10으로 구성한다.
 절대 네이버 공식 실시간 검색순위가 아니며, 결과 JSON에 근거(source)를 명시한다.
 
 필요한 환경변수: NAVER_CLIENT_ID, NAVER_CLIENT_SECRET
@@ -25,11 +26,17 @@ API_BASE = "https://openapi.naver.com/v1"
 KST = timezone(timedelta(hours=9))
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "data" / "search-ranking.json"
 
-# 오늘자 화제성 키워드 후보를 폭넓게 발굴하기 위한 분야별 시드 쿼리
-SEED_QUERIES = ["정치", "경제", "사회", "생활문화", "IT 과학", "세계", "연예", "스포츠"]
-CANDIDATES_PER_SEED = 100
-MIN_CANDIDATE_FREQ = 4
-MAX_CANDIDATES = 100
+# 담은마켓(생활용품 큐레이션) 성격에 맞는 뉴스 분야만 탭으로 구성한다.
+# (seedQuery = 뉴스 검색어, label = 화면 탭 이름)
+SECTIONS = [
+    ("생활문화", "생활·문화"),
+    ("연예", "연예"),
+    ("스포츠", "스포츠"),
+    ("IT 과학", "IT·과학"),
+]
+NEWS_PER_SECTION = 100
+MIN_CANDIDATE_FREQ = 3
+MAX_CANDIDATES = 60
 MIN_NEWS_COUNT = 200
 MAX_NEWS_COUNT = 2_000_000
 TREND_LOOKBACK_DAYS = 8
@@ -48,8 +55,11 @@ STOPWORDS = {
     "10일", "11일", "12일", "13일", "14일", "15일", "16일", "17일", "18일", "19일",
     "20일", "21일", "22일", "23일", "24일", "25일", "26일", "27일", "28일", "29일",
     "30일", "31일", "올해", "내년", "작년", "최근", "일부", "전체", "관련해", "가운데",
+    # 분야별 뉴스에서 자주 튀어나오는 일반어 노이즈 (특정 화제가 아님)
+    "연예인", "주연", "최애", "본질", "과학적", "피지컬", "실증", "사명",
+    "전반기", "후반기", "남자친구", "여자친구",
 }
-SEED_STOPWORDS = {q.replace(" ", "") for q in SEED_QUERIES} | {"정치적", "경제적", "사회적", "과학기술정보통신부"}
+SEED_STOPWORDS = {"생활문화", "생활", "문화", "연예", "스포츠", "과학", "IT", "정치", "경제", "사회", "세계"}
 JOSA_SUFFIXES = sorted([
     "으로서", "로서", "이라며", "라며", "이라고", "라고", "에서는", "에서", "에게",
     "으로", "로써", "로는", "로도", "로", "까지", "부터", "보다", "처럼", "마저", "조차",
@@ -62,9 +72,7 @@ PURE_NUMBER_RE = re.compile(r"^[0-9,.%]+$")
 
 
 def clean_text(raw):
-    text = html.unescape(raw)
-    text = TAG_RE.sub("", text)
-    return text
+    return TAG_RE.sub("", html.unescape(raw))
 
 
 def strip_josa(word):
@@ -134,71 +142,61 @@ def naver_post(path, body, client_id, client_secret):
     return _request_with_retry(req)
 
 
-def discover_candidates(client_id, client_secret):
+def discover_candidates(seed_query, client_id, client_secret):
     bigram_counter = Counter()
     unigram_counter = Counter()
-    for query in SEED_QUERIES:
-        try:
-            result = naver_get(
-                "search/news.json",
-                {"query": query, "display": CANDIDATES_PER_SEED, "sort": "date"},
-                client_id, client_secret,
-            )
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
-            print(f"[WARN] 뉴스 검색 실패 ({query}): {e}")
-            continue
-        for item in result.get("items", []):
-            text = clean_text(item.get("title", "")) + " " + clean_text(item.get("description", ""))
-            tokens = tokenize(text)
-            bigram_counter.update(bigrams(tokens))
-            unigram_counter.update(tokens)
+    try:
+        result = naver_get(
+            "search/news.json",
+            {"query": seed_query, "display": NEWS_PER_SECTION, "sort": "date"},
+            client_id, client_secret,
+        )
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
+        print(f"[WARN] 뉴스 검색 실패 ({seed_query}): {e}")
+        return []
+    for item in result.get("items", []):
+        text = clean_text(item.get("title", "")) + " " + clean_text(item.get("description", ""))
+        tokens = tokenize(text)
+        bigram_counter.update(bigrams(tokens))
+        unigram_counter.update(tokens)
 
-    # 단일 고유명사(인물/기관/지명)는 실제로 검색되는 경우가 많아 우선순위를 높게 두고,
-    # "손흥민 부상"처럼 사건을 특정하는 두 단어 조합은 보조 후보로 함께 넣는다.
-    # (문장 내에서 우연히 붙어있는 조각 구문은 대부분 데이터랩에 검색량이 없어 자동으로 걸러진다)
-    unigram_candidates = [word for word, freq in unigram_counter.most_common() if freq >= MIN_CANDIDATE_FREQ]
-    bigram_candidates = [phrase for phrase, freq in bigram_counter.most_common() if freq >= 2]
+    unigram_candidates = [w for w, f in unigram_counter.most_common() if f >= MIN_CANDIDATE_FREQ]
+    bigram_candidates = [p for p, f in bigram_counter.most_common() if f >= 2]
 
-    candidates = []
-    seen = set()
+    candidates, seen = [], set()
     for word in unigram_candidates + bigram_candidates:
-        if word in seen:
-            continue
-        seen.add(word)
-        candidates.append(word)
+        if word not in seen:
+            seen.add(word)
+            candidates.append(word)
     return candidates[:MAX_CANDIDATES]
 
 
-def filter_by_specificity(candidates, client_id, client_secret):
-    """뉴스 전체 건수로 후보를 거른다.
-
-    "한국", "행사", "오는"처럼 지나치게 흔한 일반 단어는 뉴스 전체 건수가
-    수천만 건에 달해 특정 화제라 보기 어렵다. 반대로 너무 적으면(오탈자 등)
-    화제성이 없다고 보고 제외한다. 특정 사건/인물을 가리키는 키워드는 보통
-    이 사이 어딘가에 들어온다는 것을 실제 호출로 확인해 임계값을 정했다.
-    """
+def filter_by_specificity(candidates, client_id, client_secret, news_counts):
     kept = []
-    news_counts = {}
     for keyword in candidates:
-        time.sleep(0.15)
-        try:
-            result = naver_get("search/news.json", {"query": keyword, "display": 1}, client_id, client_secret)
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
-            print(f"[WARN] 뉴스 건수 조회 실패 ({keyword}): {e}")
-            continue
-        total = result.get("total", 0)
-        news_counts[keyword] = total
+        if keyword in news_counts:
+            total = news_counts[keyword]
+        else:
+            time.sleep(0.15)
+            try:
+                result = naver_get("search/news.json", {"query": keyword, "display": 1}, client_id, client_secret)
+            except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
+                print(f"[WARN] 뉴스 건수 조회 실패 ({keyword}): {e}")
+                continue
+            total = result.get("total", 0)
+            news_counts[keyword] = total
         if MIN_NEWS_COUNT <= total <= MAX_NEWS_COUNT:
             kept.append(keyword)
-    return kept, news_counts
+    return kept
 
 
-def fetch_trend_scores(candidates, client_id, client_secret):
+def fetch_trend_scores(candidates, client_id, client_secret, cache):
     end_date = datetime.now(KST).date()
     start_date = end_date - timedelta(days=TREND_LOOKBACK_DAYS - 1)
     scores = {}
-    for i in range(0, len(candidates), 5):
-        batch = candidates[i:i + 5]
+    pending = [c for c in candidates if c not in cache]
+    for i in range(0, len(pending), 5):
+        batch = pending[i:i + 5]
         keyword_groups = [{"groupName": kw, "keywords": [kw]} for kw in batch]
         try:
             result = naver_post(
@@ -217,52 +215,32 @@ def fetch_trend_scores(candidates, client_id, client_secret):
         for group in result.get("results", []):
             data_points = group.get("data", [])
             if len(data_points) < 4:
+                cache[group["title"]] = None
                 continue
             ratios = [p["ratio"] for p in data_points]
-            recent_avg = sum(ratios[-2:]) / 2
-            earlier_avg = sum(ratios[:2]) / 2
-            growth = recent_avg - earlier_avg
-            scores[group["title"]] = {
-                "growth": growth,
+            cache[group["title"]] = {
+                "growth": sum(ratios[-2:]) / 2 - sum(ratios[:2]) / 2,
                 "recentRatio": ratios[-1],
                 "series": ratios,
             }
+    for kw in candidates:
+        if cache.get(kw):
+            scores[kw] = cache[kw]
     return scores
 
 
-def fetch_blog_counts(keywords, client_id, client_secret):
-    blog_counts = {}
-    for keyword in keywords:
-        try:
-            blog_result = naver_get("search/blog.json", {"query": keyword, "display": 1}, client_id, client_secret)
-            blog_counts[keyword] = blog_result.get("total", 0)
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
-            blog_counts[keyword] = 0
-    return blog_counts
+def fetch_blog_count(keyword, client_id, client_secret, cache):
+    if keyword in cache:
+        return cache[keyword]
+    try:
+        result = naver_get("search/blog.json", {"query": keyword, "display": 1}, client_id, client_secret)
+        cache[keyword] = result.get("total", 0)
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
+        cache[keyword] = 0
+    return cache[keyword]
 
 
-def main():
-    client_id = os.environ["NAVER_CLIENT_ID"]
-    client_secret = os.environ["NAVER_CLIENT_SECRET"]
-
-    candidates = discover_candidates(client_id, client_secret)
-    if not candidates:
-        raise SystemExit("키워드 후보를 하나도 발굴하지 못했습니다.")
-    print(f"후보 키워드 {len(candidates)}개 발굴")
-
-    specific_candidates, news_counts = filter_by_specificity(candidates, client_id, client_secret)
-    print(f"화제성 후보로 압축: {len(specific_candidates)}개 {specific_candidates}")
-    if not specific_candidates:
-        raise SystemExit("특정 화제로 볼 만한 후보가 남지 않았습니다.")
-
-    scores = fetch_trend_scores(specific_candidates, client_id, client_secret)
-    ranked = sorted(scores.items(), key=lambda kv: kv[1]["growth"], reverse=True)
-    top_keywords = [kw for kw, _ in ranked[:TOP_N]]
-    if not top_keywords:
-        raise SystemExit("데이터랩 트렌드 점수를 하나도 계산하지 못했습니다.")
-
-    blog_counts = fetch_blog_counts(top_keywords, client_id, client_secret)
-
+def build_items(top_keywords, scores, news_counts, blog_cache, client_id, client_secret):
     items = []
     for rank, keyword in enumerate(top_keywords, start=1):
         score = scores[keyword]
@@ -272,20 +250,67 @@ def main():
             "growthScore": round(score["growth"], 2),
             "recentRatio": score["recentRatio"],
             "newsCount": news_counts.get(keyword, 0),
-            "blogCount": blog_counts.get(keyword, 0),
+            "blogCount": fetch_blog_count(keyword, client_id, client_secret, blog_cache),
         })
+    return items
+
+
+def main():
+    client_id = os.environ["NAVER_CLIENT_ID"]
+    client_secret = os.environ["NAVER_CLIENT_SECRET"]
+
+    news_counts = {}      # keyword -> 뉴스 총 건수 (분야 간 공유 캐시)
+    trend_cache = {}      # keyword -> 트렌드 점수 or None
+    blog_cache = {}       # keyword -> 블로그 건수
+
+    section_results = []          # [(key, label, items)]
+    all_scores = {}               # 전체 탭용: keyword -> score
+    all_keyword_pool = []
+
+    for seed_query, label in SECTIONS:
+        candidates = discover_candidates(seed_query, client_id, client_secret)
+        specific = filter_by_specificity(candidates, client_id, client_secret, news_counts)
+        scores = fetch_trend_scores(specific, client_id, client_secret, trend_cache)
+        ranked = sorted(scores.items(), key=lambda kv: kv[1]["growth"], reverse=True)
+        top = [kw for kw, _ in ranked[:TOP_N]]
+        items = build_items(top, scores, news_counts, blog_cache, client_id, client_secret)
+        section_results.append((seed_query, label, items))
+        print(f"[{label}] 후보 {len(candidates)} → 화제 {len(specific)} → Top {len(items)}")
+        for kw, sc in scores.items():
+            all_scores[kw] = sc
+            all_keyword_pool.append(kw)
+
+    # 전체 탭: 모든 분야 후보를 합쳐 상승폭 기준 Top10
+    seen = set()
+    all_ranked = sorted(all_scores.items(), key=lambda kv: kv[1]["growth"], reverse=True)
+    all_top = []
+    for kw, _ in all_ranked:
+        if kw not in seen:
+            seen.add(kw)
+            all_top.append(kw)
+        if len(all_top) >= TOP_N:
+            break
+    all_items = build_items(all_top, all_scores, news_counts, blog_cache, client_id, client_secret)
+
+    sections = [{"key": "all", "label": "전체", "items": all_items}]
+    for key, label, items in section_results:
+        if items:
+            sections.append({"key": key, "label": label, "items": items})
+
+    if not all_items:
+        raise SystemExit("검색어 랭킹을 하나도 만들지 못했습니다. API 키/쿼터를 확인하세요.")
 
     output = {
         "updatedAt": datetime.now(KST).strftime("%Y-%m-%d"),
         "updatedAtIso": datetime.now(KST).isoformat(),
         "source": "네이버 뉴스·블로그·데이터랩 기준 (네이버 공식 실시간 검색순위가 아닙니다)",
-        "method": "오늘자 뉴스 제목·요약에서 키워드 후보를 추출한 뒤, 데이터랩 검색어트렌드로 최근 상승폭이 큰 순으로 정렬했습니다.",
-        "items": items,
+        "method": "분야별 오늘자 뉴스에서 키워드 후보를 추출한 뒤, 데이터랩 검색어트렌드로 최근 상승폭이 큰 순으로 정렬했습니다.",
+        "sections": sections,
     }
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"저장 완료: {OUTPUT_PATH} ({len(items)}개 키워드)")
+    print(f"저장 완료: {OUTPUT_PATH} ({len(sections)}개 분야)")
 
 
 if __name__ == "__main__":

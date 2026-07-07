@@ -339,8 +339,9 @@
       </div>
       <p class="ranking-note reveal">
         <strong>네이버 뉴스·블로그·데이터랩 기준으로 상승세를 분석한 결과이며, 네이버 공식 실시간 검색순위가 아닙니다.</strong>
-        오늘자 뉴스에서 화제성 키워드 후보를 뽑은 뒤, 데이터랩 검색어트렌드로 최근 검색량 상승폭이 큰 순서로 정리했어요.
+        분야별 오늘자 뉴스에서 화제성 키워드 후보를 뽑은 뒤, 데이터랩 검색어트렌드로 최근 검색량 상승폭이 큰 순서로 정리했어요. 아래 분야를 눌러 확인하세요.
       </p>
+      <div class="cat-tabs reveal" id="search-tabs"></div>
       <div class="rank-grid reveal" id="search-grid">
         <div class="rank-loading">랭킹을 불러오는 중이에요…</div>
       </div>
@@ -506,19 +507,39 @@
       document.getElementById('coupang-grid').innerHTML = '<div class="rank-error">랭킹 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.</div>';
     });
 
-  // ---------- 오늘의 검색어 랭킹 ----------
+  // ---------- 오늘의 검색어 랭킹 (분야별 Top10) ----------
   fetch('data/search-ranking.json', { cache: 'no-store' })
     .then(res => { if(!res.ok) throw new Error('fetch failed'); return res.json(); })
     .then(data => {
       document.getElementById('search-updated').textContent = `마지막 업데이트: ${data.updatedAt}`;
-      const grid = document.getElementById('search-grid');
-      grid.innerHTML = (data.items || []).map(item => `
-        <a class="rank-card kw-card" href="https://search.naver.com/search.naver?query=${encodeURIComponent(item.keyword)}" target="_blank" rel="noopener">
-          <span class="rank-badge">${item.rank}</span>
-          <div class="kw-word">${item.keyword}</div>
-          <div class="kw-meta">뉴스 ${item.newsCount.toLocaleString('ko-KR')}건 · 블로그 ${item.blogCount.toLocaleString('ko-KR')}건</div>
-        </a>
-      `).join('');
+      const tabsEl = document.getElementById('search-tabs');
+      const gridEl = document.getElementById('search-grid');
+      const sections = data.sections || [];
+      if (!sections.length) throw new Error('no sections');
+
+      const renderGrid = (sec) => {
+        gridEl.innerHTML = sec.items.map(item => `
+          <a class="rank-card kw-card" href="https://search.naver.com/search.naver?query=${encodeURIComponent(item.keyword)}" target="_blank" rel="noopener">
+            <span class="rank-badge">${item.rank}</span>
+            <div class="kw-word">${item.keyword}</div>
+            <div class="kw-meta">뉴스 ${(item.newsCount||0).toLocaleString('ko-KR')}건 · 블로그 ${(item.blogCount||0).toLocaleString('ko-KR')}건</div>
+          </a>
+        `).join('');
+      };
+
+      tabsEl.innerHTML = sections.map((sec, i) =>
+        `<button class="cat-tab${i === 0 ? ' active' : ''}" data-idx="${i}">${sec.label}</button>`
+      ).join('');
+
+      tabsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.cat-tab');
+        if (!btn) return;
+        tabsEl.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGrid(sections[Number(btn.dataset.idx)]);
+      });
+
+      renderGrid(sections[0]);
     })
     .catch(() => {
       document.getElementById('search-updated').textContent = '';
