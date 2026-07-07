@@ -91,18 +91,11 @@
   .btn-ghost:hover{ border-color:var(--clay-500); }
 
   /* ---------- MARQUEE ---------- */
-  .marquee{ background:var(--clay-900); color:var(--sand-50); overflow:hidden; padding:22px 0; }
-  .marquee-row{ display:flex; overflow:hidden; white-space:nowrap; }
-  .marquee-row + .marquee-row{ margin-top:14px; }
-  .marquee-track{ display:inline-flex; gap:40px; padding-left:40px; animation:scroll 26s linear infinite; }
-  .marquee-track.rev{ animation:scroll-rev 34s linear infinite; }
+  .marquee{ background:var(--clay-900); color:var(--sand-50); overflow:hidden; padding:18px 0; white-space:nowrap; }
+  .marquee-track{ display:inline-flex; gap:40px; padding-left:40px; animation:scroll 45s linear infinite; }
   .marquee-track span{ font-family:'Noto Serif KR'; font-size:17px; font-weight:600; letter-spacing:.02em; }
   .marquee-track span::after{ content:'✦'; margin-left:40px; color:var(--clay-300); }
-  .marquee-track.today span{ font-family:'Noto Sans KR'; font-size:14px; font-weight:600; color:var(--sand-100); }
-  .marquee-track.today span::after{ color:var(--sage-300); }
-  .marquee-track.today span b{ color:#fff; font-weight:700; }
   @keyframes scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
-  @keyframes scroll-rev{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
 
   /* ---------- STORY / PILLARS ---------- */
   .story{ padding:100px 28px; }
@@ -284,17 +277,9 @@
 
   <!-- MARQUEE -->
   <div class="marquee">
-    <div class="marquee-row">
-      <div class="marquee-track">
-        <span>🛒 생활 꿀템</span><span>🔥 트렌드 아이템</span><span>✅ 엄선 소싱</span><span>💰 합리적인 가격</span><span>📦 로켓배송 인기템</span>
-        <span>🛒 생활 꿀템</span><span>🔥 트렌드 아이템</span><span>✅ 엄선 소싱</span><span>💰 합리적인 가격</span><span>📦 로켓배송 인기템</span>
-      </div>
-    </div>
-    <div class="marquee-row">
-      <div class="marquee-track rev today" id="mq-today">
-        <span>오늘의 인기 랭킹을 불러오는 중…</span>
-        <span>오늘의 인기 랭킹을 불러오는 중…</span>
-      </div>
+    <div class="marquee-track">
+      <span>🛒 생활 꿀템</span><span>🔥 트렌드 아이템</span><span>✅ 엄선 소싱</span><span>💰 합리적인 가격</span><span>📦 로켓배송 인기템</span>
+      <span>🛒 생활 꿀템</span><span>🔥 트렌드 아이템</span><span>✅ 엄선 소싱</span><span>💰 합리적인 가격</span><span>📦 로켓배송 인기템</span>
     </div>
   </div>
 
@@ -529,33 +514,6 @@
       if (total.status === 'fulfilled') document.getElementById('vc-total').textContent = fmt(total.value);
       if (today.status === 'fulfilled') document.getElementById('vc-today').textContent = fmt(today.value);
     });
-  })();
-
-  // ---------- 마퀴: 오늘의 실시간 하이라이트 (아랫줄) ----------
-  (function () {
-    const el = document.getElementById('mq-today');
-    if (!el) return;
-    const cut = (s, n) => (s && s.length > n ? s.slice(0, n) + '…' : (s || ''));
-    Promise.allSettled([
-      fetch('data/coupang-ranking.json', { cache: 'no-store' }).then(r => r.json()),
-      fetch('data/search-ranking.json', { cache: 'no-store' }).then(r => r.json()),
-    ]).then(([coup, search]) => {
-      const parts = [];
-      if (coup.status === 'fulfilled') {
-        (coup.value.categories || []).slice(0, 5).forEach(c => {
-          if (c.items && c.items[0]) parts.push(`🛒 ${c.label} 1위 <b>${cut(c.items[0].productName, 22)}</b>`);
-        });
-      }
-      if (search.status === 'fulfilled') {
-        (search.value.sections || []).slice(0, 4).forEach(s => {
-          if (s.items && s.items[0]) parts.push(`🔍 ${s.label} 검색 1위 <b>${s.items[0].keyword}</b>`);
-        });
-      }
-      parts.push('🔮 오늘의 운세 확인하기');
-      if (!parts.length) { el.closest('.marquee-row').style.display = 'none'; return; }
-      const html = parts.map(t => `<span>${t}</span>`).join('');
-      el.innerHTML = html + html;   // 이어붙여 끊김 없이 순환
-    }).catch(() => { el.closest('.marquee-row').style.display = 'none'; });
   })();
 
   // ---------- 오늘의 쿠팡 랭킹 (카테고리별 Top10) ----------
