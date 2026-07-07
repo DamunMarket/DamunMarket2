@@ -45,11 +45,15 @@ jobs:
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
         run: python scripts/fetch_search_ranking.py
 
+      - name: Generate today's fortune
+        continue-on-error: true
+        run: python scripts/generate_fortune.py
+
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/coupang-ranking.json data/search-ranking.json
+          git add data/coupang-ranking.json data/search-ranking.json data/fortune.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
