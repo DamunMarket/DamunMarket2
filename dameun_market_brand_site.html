@@ -171,33 +171,10 @@
   .kw-card .kw-meta{ font-size:11.5px; color:var(--ink-500); margin-top:auto; }
   .rank-loading, .rank-error{ grid-column:1/-1; text-align:center; padding:40px; color:var(--ink-500); font-size:13.5px; }
 
-  /* ---------- 오늘의 운세 ---------- */
-  .zodiac-picker{ display:grid; grid-template-columns:repeat(12,1fr); gap:8px; margin-bottom:28px; }
-  .zodiac-btn{ display:flex; flex-direction:column; align-items:center; gap:3px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px 4px; cursor:pointer; transition:all .18s ease; }
-  .zodiac-btn:hover{ border-color:var(--clay-300); transform:translateY(-2px); }
-  .zodiac-btn.active{ background:var(--clay-900); border-color:var(--clay-900); }
-  .zodiac-btn .zb-emoji{ font-size:22px; line-height:1; }
-  .zodiac-btn .zb-name{ font-size:11.5px; font-weight:600; color:var(--ink-500); }
-  .zodiac-btn.active .zb-name{ color:#fff; }
-  @media (max-width:820px){ .zodiac-picker{ grid-template-columns:repeat(6,1fr); } }
-  @media (max-width:420px){ .zodiac-picker{ grid-template-columns:repeat(4,1fr); } }
-
-  .fortune-card{ background:#fff; border:1px solid var(--line); border-radius:20px; padding:32px 30px; }
-  .fortune-top{ display:flex; align-items:center; gap:16px; margin-bottom:6px; flex-wrap:wrap; }
-  .fortune-top .ft-emoji{ font-size:40px; line-height:1; }
-  .fortune-top .ft-title{ font-family:'Noto Serif KR'; font-weight:900; font-size:22px; color:var(--clay-900); }
-  .fortune-top .ft-years{ font-size:12px; color:var(--ink-500); margin-top:3px; }
-  .fortune-top .ft-stars{ margin-left:auto; font-size:18px; letter-spacing:2px; color:var(--clay-500); }
-  .fortune-summary{ font-size:15.5px; line-height:1.7; color:var(--ink-900); background:var(--sand-50); border-radius:14px; padding:16px 18px; margin:16px 0 20px; }
-  .fortune-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px; }
-  .fortune-item{ border:1px solid var(--line); border-radius:14px; padding:14px 16px; }
-  .fortune-item .fi-label{ font-size:11.5px; font-weight:700; color:var(--clay-700); margin-bottom:6px; letter-spacing:.03em; }
-  .fortune-item .fi-text{ font-size:13px; color:var(--ink-900); line-height:1.6; }
-  .fortune-foot{ display:flex; gap:22px; align-items:center; flex-wrap:wrap; padding-top:18px; border-top:1px solid var(--line); }
-  .fortune-foot .ff-item{ font-size:13px; color:var(--ink-500); }
-  .fortune-foot .ff-item b{ font-family:'Noto Serif KR'; color:var(--clay-700); font-size:15px; margin-left:4px; }
-  .fortune-foot .ff-advice{ margin-left:auto; font-size:13px; font-weight:600; color:var(--sage-500); }
-  @media (max-width:640px){ .fortune-grid{ grid-template-columns:1fr; } .fortune-foot .ff-advice{ margin-left:0; width:100%; } }
+  /* ---------- 담은마켓 상품 카드 ---------- */
+  .prod-card .prod-badge{ display:inline-block; font-size:10px; font-weight:700; color:#fff; background:var(--clay-500); padding:2px 8px; border-radius:99px; margin-bottom:8px; width:fit-content; }
+  .prod-card .prod-price{ margin-top:auto; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+  .prod-card .prod-original{ font-size:12px; color:var(--ink-500); text-decoration:line-through; }
 
   /* ---------- MOOD GRID ---------- */
   .mood{ background:var(--clay-900); padding:100px 28px; text-align:center; }
@@ -238,7 +215,7 @@
         <a href="#lineup">라인업</a>
         <a href="#coupang-ranking">오늘의 쿠팡 랭킹</a>
         <a href="#search-ranking">오늘의 검색어 랭킹</a>
-        <a href="#fortune">오늘의 운세</a>
+        <a href="#products">담은마켓 상품</a>
         <a href="#featured">지금 담은 아이템</a>
         <a href="#contact">문의</a>
       </nav>
@@ -325,23 +302,22 @@
     </div>
   </section>
 
-  <!-- TODAY'S FORTUNE -->
-  <section class="ranking on-sand" id="fortune">
+  <!-- OUR PRODUCTS -->
+  <section class="ranking on-sand" id="products">
     <div class="wrap">
       <div class="ranking-head reveal">
         <div>
-          <span class="eyebrow">TODAY'S FORTUNE</span>
-          <h2>오늘의 운세</h2>
+          <span class="eyebrow">OUR PRODUCTS</span>
+          <h2>담은마켓 상품</h2>
         </div>
-        <span class="ranking-updated" id="fortune-updated">업데이트 확인 중…</span>
+        <span class="ranking-updated" id="products-updated"></span>
       </div>
       <p class="ranking-note reveal">
-        내 띠를 눌러 오늘의 운세를 확인해 보세요. 매일 새벽 새롭게 바뀝니다.
-        <strong>재미로 보는 콘텐츠예요.</strong>
+        담은마켓이 직접 엄선해 판매하는 상품이에요. 카테고리를 눌러 확인해 보세요.
       </p>
-      <div class="zodiac-picker reveal" id="zodiac-picker"></div>
-      <div class="fortune-card reveal" id="fortune-card">
-        <div class="rank-loading">운세를 불러오는 중이에요…</div>
+      <div class="cat-tabs reveal" id="products-tabs"></div>
+      <div class="rank-grid reveal" id="products-grid">
+        <div class="rank-loading">상품을 불러오는 중이에요…</div>
       </div>
     </div>
   </section>
@@ -597,59 +573,65 @@
       document.getElementById('search-grid').innerHTML = '<div class="rank-error">검색어 랭킹 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.</div>';
     });
 
-  // ---------- 오늘의 운세 (12띠별) ----------
-  fetch('data/fortune.json', { cache: 'no-store' })
+  // ---------- 담은마켓 상품 (카테고리별) ----------
+  fetch('data/products.json', { cache: 'no-store' })
     .then(res => { if(!res.ok) throw new Error('fetch failed'); return res.json(); })
     .then(data => {
-      document.getElementById('fortune-updated').textContent = `마지막 업데이트: ${data.updatedAt}`;
-      const pickerEl = document.getElementById('zodiac-picker');
-      const cardEl = document.getElementById('fortune-card');
-      const items = data.items || [];
-      if (!items.length) throw new Error('no items');
+      const tabsEl = document.getElementById('products-tabs');
+      const gridEl = document.getElementById('products-grid');
+      const updatedEl = document.getElementById('products-updated');
+      const all = (data.products || []).filter(p => p && p.name);
+      if (data.updatedAt) updatedEl.textContent = `업데이트: ${data.updatedAt}`;
 
-      const renderCard = (it) => {
-        const stars = '★'.repeat(it.score) + '☆'.repeat(5 - it.score);
-        cardEl.innerHTML = `
-          <div class="fortune-top">
-            <span class="ft-emoji">${it.emoji}</span>
-            <div>
-              <div class="ft-title">${it.zodiac}띠</div>
-              <div class="ft-years">${it.years.join(' · ')}년생</div>
-            </div>
-            <span class="ft-stars" title="오늘의 총운">${stars}</span>
-          </div>
-          <div class="fortune-summary">${it.summary}</div>
-          <div class="fortune-grid">
-            <div class="fortune-item"><div class="fi-label">애정운</div><div class="fi-text">${it.love}</div></div>
-            <div class="fortune-item"><div class="fi-label">금전운</div><div class="fi-text">${it.money}</div></div>
-            <div class="fortune-item"><div class="fi-label">건강운</div><div class="fi-text">${it.health}</div></div>
-          </div>
-          <div class="fortune-foot">
-            <span class="ff-item">행운의 색 <b>${it.luckyColor}</b></span>
-            <span class="ff-item">행운의 숫자 <b>${it.luckyNumber}</b></span>
-            <span class="ff-advice">${it.advice}</span>
-          </div>`;
+      if (!all.length) {
+        tabsEl.style.display = 'none';
+        gridEl.innerHTML = '<div class="rank-error">상품을 준비 중이에요. 곧 만나보실 수 있어요.</div>';
+        return;
+      }
+
+      // 탭 순서: categoryOrder에 정의된 순서 중 실제 상품이 있는 것만, 그 뒤에 나머지
+      const order = data.categoryOrder || [];
+      const present = order.filter(c => all.some(p => p.category === c));
+      all.forEach(p => { if (p.category && !present.includes(p.category)) present.push(p.category); });
+      const tabs = ['전체', ...present];
+
+      const card = (p) => {
+        const price = p.price != null ? `<span class="rank-price">${Number(p.price).toLocaleString('ko-KR')}원</span>` : '';
+        const original = p.originalPrice ? `<span class="prod-original">${Number(p.originalPrice).toLocaleString('ko-KR')}원</span>` : '';
+        const badge = p.badge ? `<span class="prod-badge">${p.badge}</span>` : '';
+        const clickable = p.url && p.url !== '#';
+        const attrs = clickable ? ` href="${p.url}" target="_blank" rel="noopener"` : ' href="#" onclick="return false;"';
+        return `
+          <a class="rank-card prod-card"${attrs}>
+            <div class="rank-img"><img src="${p.image || ''}" alt="${p.name}" loading="lazy"></div>
+            ${badge}
+            <div class="rank-name">${p.name}</div>
+            <div class="prod-price">${original}${price}</div>
+          </a>`;
       };
 
-      pickerEl.innerHTML = items.map((it, i) =>
-        `<button class="zodiac-btn${i === 0 ? ' active' : ''}" data-idx="${i}">
-          <span class="zb-emoji">${it.emoji}</span><span class="zb-name">${it.zodiac}</span>
-        </button>`
+      const renderGrid = (cat) => {
+        const list = cat === '전체' ? all : all.filter(p => p.category === cat);
+        gridEl.innerHTML = list.map(card).join('') || '<div class="rank-error">이 카테고리에 등록된 상품이 없어요.</div>';
+      };
+
+      tabsEl.innerHTML = tabs.map((t, i) =>
+        `<button class="cat-tab${i === 0 ? ' active' : ''}" data-cat="${t}">${t}</button>`
       ).join('');
 
-      pickerEl.addEventListener('click', (e) => {
-        const btn = e.target.closest('.zodiac-btn');
+      tabsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.cat-tab');
         if (!btn) return;
-        pickerEl.querySelectorAll('.zodiac-btn').forEach(b => b.classList.remove('active'));
+        tabsEl.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        renderCard(items[Number(btn.dataset.idx)]);
+        renderGrid(btn.dataset.cat);
       });
 
-      renderCard(items[0]);
+      renderGrid('전체');
     })
     .catch(() => {
-      document.getElementById('fortune-updated').textContent = '';
-      document.getElementById('fortune-card').innerHTML = '<div class="rank-error">운세 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.</div>';
+      const u = document.getElementById('products-updated'); if (u) u.textContent = '';
+      document.getElementById('products-grid').innerHTML = '<div class="rank-error">상품 데이터를 불러오지 못했어요. 잠시 후 다시 시도해주세요.</div>';
     });
 </script>
 

@@ -1,0 +1,32 @@
+{
+  "updatedAt": "2026-07-08",
+  "note": "담은마켓 자사 판매 상품 목록입니다. products 배열에 상품을 추가하면 사이트에 자동으로 표시됩니다. category는 categoryOrder 안의 이름을 사용하세요. url이 '#'이면 카드가 클릭되지 않습니다(실제 판매 링크로 교체하세요). price/originalPrice는 숫자만, badge/originalPrice는 없으면 생략 가능합니다.",
+  "categoryOrder": [
+    "생활용품",
+    "주방용품",
+    "가구/홈인테리어",
+    "가전/디지털",
+    "뷰티",
+    "식품",
+    "건강식품",
+    "반려/애완",
+    "문구/오피스",
+    "패션/잡화",
+    "스포츠/레저",
+    "유아/출산",
+    "자동차용품",
+    "여행/캠핑",
+    "시즌/기획전"
+  ],
+  "products": [
+    {
+      "name": "스텐316 텀블러 3종세트 + 세척솔 2종",
+      "category": "주방용품",
+      "price": 19900,
+      "originalPrice": 24900,
+      "image": "https://cdn1.domeggook.com/upload/item/2025/07/17/17527362603D0CBF93AD8AC708588D0A/17527362603D0CBF93AD8AC708588D0A_img_760?hash=bc78ca1dec13e91b235e45ce0d03486e",
+      "url": "#",
+      "badge": "런칭 특가"
+    }
+  ]
+}
