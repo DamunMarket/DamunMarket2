@@ -186,6 +186,36 @@
   .prod-card .prod-price{ margin-top:auto; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
   .prod-card .prod-original{ font-size:12px; color:var(--ink-500); text-decoration:line-through; }
 
+  /* ---------- PRODUCTS SHOWCASE ---------- */
+  .products-showcase{
+    position:relative;
+    background:
+      radial-gradient(560px 320px at 92% 8%, rgba(183,198,172,.38), transparent 70%),
+      linear-gradient(180deg, #fff 0%, var(--sand-50) 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .products-showcase::before{
+    content:'DAMEUN FIRST PICK';
+    position:absolute; top:34px; right:max(28px, calc((100vw - 1284px)/2));
+    font-family:'Noto Serif KR'; font-size:11px; font-weight:700; letter-spacing:.16em;
+    color:var(--clay-700); border:1px solid var(--clay-300); background:rgba(255,255,255,.78);
+    padding:7px 13px; border-radius:99px;
+  }
+  .products-showcase .ranking-head h2{ font-size:clamp(30px,4.2vw,44px); }
+  .products-showcase .ranking-note{ font-size:14px; color:var(--clay-700); }
+  .products-showcase .rank-grid{ display:flex; flex-wrap:wrap; gap:18px; }
+  .products-showcase .prod-card{
+    width:min(100%, 252px); padding:18px; border-color:var(--clay-300);
+    box-shadow:0 16px 34px rgba(59,42,34,.11);
+  }
+  .products-showcase .prod-card:hover{ box-shadow:0 20px 42px rgba(59,42,34,.16); }
+  @media (max-width:960px){
+    .products-showcase::before{ position:static; display:inline-flex; margin:0 0 20px; }
+  }
+  @media (max-width:640px){
+    .products-showcase .prod-card{ width:100%; }
+  }
+
   /* ---------- MOOD GRID ---------- */
   .mood{ background:var(--clay-900); padding:100px 28px; text-align:center; }
   .mood .eyebrow{ color:var(--clay-300); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:14px; display:block; }
@@ -223,9 +253,9 @@
       <nav class="nav-links">
         <a href="#story">브랜드</a>
         <a href="#lineup">라인업</a>
+        <a href="#products">담은마켓 상품</a>
         <a href="#coupang-ranking">오늘의 쿠팡 랭킹</a>
         <a href="#search-ranking">오늘의 검색어 랭킹</a>
-        <a href="#products">담은마켓 상품</a>
         <a href="#featured">지금 담은 아이템</a>
         <a href="#contact">문의</a>
       </nav>
@@ -270,6 +300,28 @@
     </div>
   </div>
 
+  <!-- OUR PRODUCTS -->
+  <section class="ranking products-showcase" id="products">
+    <div class="wrap wide">
+      <div class="ranking-head reveal">
+        <div>
+          <span class="eyebrow">OUR PRODUCTS</span>
+          <h2>담은마켓 상품</h2>
+        </div>
+        <span class="ranking-updated" id="products-updated"></span>
+      </div>
+      <p class="ranking-note reveal">
+        담은마켓이 직접 엄선한 상품을 가장 먼저 만나보세요. 카테고리를 눌러 자세히 확인할 수 있어요.
+      </p>
+      <div class="ranking-body">
+        <aside class="cat-sidebar" id="products-tabs"></aside>
+        <div class="rank-grid reveal" id="products-grid">
+          <div class="rank-loading">상품을 불러오는 중이에요…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- COUPANG RANKING -->
   <section class="ranking on-sand" id="coupang-ranking">
     <div class="wrap wide">
@@ -311,28 +363,6 @@
         <aside class="cat-sidebar" id="search-tabs"></aside>
         <div class="rank-grid reveal" id="search-grid">
           <div class="rank-loading">랭킹을 불러오는 중이에요…</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- OUR PRODUCTS -->
-  <section class="ranking on-sand" id="products">
-    <div class="wrap wide">
-      <div class="ranking-head reveal">
-        <div>
-          <span class="eyebrow">OUR PRODUCTS</span>
-          <h2>담은마켓 상품</h2>
-        </div>
-        <span class="ranking-updated" id="products-updated"></span>
-      </div>
-      <p class="ranking-note reveal">
-        담은마켓이 직접 엄선해 판매하는 상품이에요. 카테고리를 눌러 확인해 보세요.
-      </p>
-      <div class="ranking-body">
-        <aside class="cat-sidebar" id="products-tabs"></aside>
-        <div class="rank-grid reveal" id="products-grid">
-          <div class="rank-loading">상품을 불러오는 중이에요…</div>
         </div>
       </div>
     </div>
