@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-08",
+  "updatedAt": "2026-07-17",
   "note": "담은마켓 자사 판매 상품 목록입니다. products 배열에 상품을 추가하면 사이트에 자동으로 표시됩니다. category는 categoryOrder 안의 이름을 사용하세요. url이 '#'이면 카드가 클릭되지 않습니다(실제 판매 링크로 교체하세요). price/originalPrice는 숫자만, badge/originalPrice는 없으면 생략 가능합니다.",
   "categoryOrder": [
     "생활용품",
@@ -27,6 +27,14 @@
       "image": "https://cdn1.domeggook.com/upload/item/2025/07/17/17527362603D0CBF93AD8AC708588D0A/17527362603D0CBF93AD8AC708588D0A_img_760?hash=bc78ca1dec13e91b235e45ce0d03486e",
       "url": "https://link.coupang.com/re/SHOPPAGESHAREVID?pageKey=A01737208&lptag=A01737208&sourceType2=brandstore_share&title=%EB%8B%B4%EC%9D%80%EB%A7%88%EC%BC%93&destUrl=https%3A%2F%2Fshop.coupang.com%2Fvid%2FA01737208%3Fsource%3Dbrandstore_share",
       "badge": "런칭 특가"
+    },
+    {
+      "name": "담은마켓 KC인증 폴라폴리스 극세사 무릎담요 1+1 개별 선물포장 사무실 차량용",
+      "category": "가구/홈인테리어",
+      "price": 12900,
+      "image": "images/polaris-blanket-thumbnail.png",
+      "url": "#",
+      "badge": "1+1 선물세트"
     }
   ]
 }
