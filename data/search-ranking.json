@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-02",
-  "updatedAtIso": "2026-09-02T08:57:56.159795+09:00",
+  "updatedAt": "2026-09-03",
+  "updatedAtIso": "2026-09-03T09:00:50.841873+09:00",
   "source": "네이버 뉴스·블로그·데이터랩 기준 (네이버 공식 실시간 검색순위가 아닙니다)",
   "method": "분야별 오늘자 뉴스에서 키워드 후보를 추출한 뒤, 데이터랩 검색어트렌드로 최근 상승폭이 큰 순으로 정렬했습니다.",
   "sections": [
@@ -10,83 +10,83 @@
       "items": [
         {
           "rank": 1,
-          "keyword": "전승희",
-          "growthScore": 50.88,
-          "recentRatio": 100,
-          "newsCount": 2476,
-          "blogCount": 4019
+          "keyword": "양성평등주간",
+          "growthScore": 55.81,
+          "recentRatio": 63.86404,
+          "newsCount": 31183,
+          "blogCount": 22836
         },
         {
           "rank": 2,
           "keyword": "황희찬",
-          "growthScore": 35.41,
+          "growthScore": 50.55,
           "recentRatio": 100,
-          "newsCount": 153378,
-          "blogCount": 119561
+          "newsCount": 153485,
+          "blogCount": 119979
         },
         {
           "rank": 3,
-          "keyword": "엄정화",
-          "growthScore": 35.06,
-          "recentRatio": 83.83311,
-          "newsCount": 154578,
-          "blogCount": 132609
+          "keyword": "바타",
+          "growthScore": 49.66,
+          "recentRatio": 100,
+          "newsCount": 12617,
+          "blogCount": 102548
         },
         {
           "rank": 4,
-          "keyword": "하영",
-          "growthScore": 30.08,
-          "recentRatio": 100,
-          "newsCount": 38514,
-          "blogCount": 280108
+          "keyword": "이혜영",
+          "growthScore": 47.68,
+          "recentRatio": 74.63768,
+          "newsCount": 111262,
+          "blogCount": 79150
         },
         {
           "rank": 5,
-          "keyword": "시니어",
-          "growthScore": 29.15,
-          "recentRatio": 99.24623,
-          "newsCount": 667352,
-          "blogCount": 2693733
+          "keyword": "지예은",
+          "growthScore": 45.21,
+          "recentRatio": 69.33707,
+          "newsCount": 21606,
+          "blogCount": 36471
         },
         {
           "rank": 6,
-          "keyword": "이상순",
-          "growthScore": 23.52,
-          "recentRatio": 81.74196,
-          "newsCount": 65320,
-          "blogCount": 60605
+          "keyword": "김민종",
+          "growthScore": 38.34,
+          "recentRatio": 89.86534,
+          "newsCount": 72662,
+          "blogCount": 43963
         },
         {
           "rank": 7,
-          "keyword": "홍혜걸",
-          "growthScore": 16.12,
-          "recentRatio": 78.87323,
-          "newsCount": 11579,
-          "blogCount": 14979
+          "keyword": "산업부",
+          "growthScore": 23.66,
+          "recentRatio": 91.75627,
+          "newsCount": 812745,
+          "blogCount": 7257728
         },
         {
           "rank": 8,
-          "keyword": "김신록",
-          "growthScore": 10.87,
-          "recentRatio": 61.96636,
-          "newsCount": 25366,
-          "blogCount": 26840
+          "keyword": "권은비",
+          "growthScore": 23.49,
+          "recentRatio": 35.98866,
+          "newsCount": 53498,
+          "blogCount": 84264
         },
         {
           "rank": 9,
-          "keyword": "과학기술정보통신부",
-          "growthScore": 6.18,
-          "recentRatio": 33.31777,
-          "newsCount": 1031479,
-          "blogCount": 584431
+          "keyword": "스타트업",
+          "growthScore": 22.03,
+          "recentRatio": 31.22412,
+          "newsCount": 1881326,
+          "blogCount": 2875116
         },
         {
           "rank": 10,
-          "keyword": "샬케",
-          "growthScore": 5.3,
-          "recentRatio": 1.68674,
-          "newsCount": 26481,
-          "blogCount": 43557
+          "keyword": "아시안게임",
+          "growthScore": 19.88,
+          "recentRatio": 100,
+          "newsCount": 1025388,
+          "blogCount": 477016
         }
       ]
     },
@@ -96,83 +96,83 @@
       "items": [
         {
           "rank": 1,
-          "keyword": "문화생활",
-          "growthScore": 4.67,
-          "recentRatio": 18.67321,
-          "newsCount": 750413,
-          "blogCount": 12765521
+          "keyword": "양성평등주간",
+          "growthScore": 55.81,
+          "recentRatio": 63.86404,
+          "newsCount": 31183,
+          "blogCount": 22836
         },
         {
           "rank": 2,
-          "keyword": "돌봄",
-          "growthScore": 4.3,
-          "recentRatio": 20.63882,
-          "newsCount": 1696611,
-          "blogCount": 3673003
+          "keyword": "기초생활수급자",
+          "growthScore": 8.92,
+          "recentRatio": 93.83886,
+          "newsCount": 451982,
+          "blogCount": 993246
         },
         {
           "rank": 3,
-          "keyword": "기초생활수급자",
-          "growthScore": 2.25,
-          "recentRatio": 100,
-          "newsCount": 451871,
-          "blogCount": 991150
+          "keyword": "직장인",
+          "growthScore": 2.53,
+          "recentRatio": 17.00879,
+          "newsCount": 1521760,
+          "blogCount": 27511910
         },
         {
           "rank": 4,
-          "keyword": "다문화가족",
-          "growthScore": 1.07,
-          "recentRatio": 1.95497,
-          "newsCount": 328592,
-          "blogCount": 469933
+          "keyword": "문화생활",
+          "growthScore": 1.7,
+          "recentRatio": 10.37567,
+          "newsCount": 750737,
+          "blogCount": 12779636
         },
         {
           "rank": 5,
-          "keyword": "양산시",
-          "growthScore": 0.82,
-          "recentRatio": 98.63387,
-          "newsCount": 273919,
-          "blogCount": 3790088
+          "keyword": "고양시",
+          "growthScore": 1.24,
+          "recentRatio": 71.62322,
+          "newsCount": 1283915,
+          "blogCount": 6874171
         },
         {
           "rank": 6,
-          "keyword": "삼천리그룹",
-          "growthScore": 0.41,
-          "recentRatio": 5.46448,
-          "newsCount": 26643,
-          "blogCount": 32016
+          "keyword": "수문장",
+          "growthScore": 1.16,
+          "recentRatio": 13.41681,
+          "newsCount": 88909,
+          "blogCount": 235422
         },
         {
           "rank": 7,
-          "keyword": "생활권",
-          "growthScore": 0.15,
-          "recentRatio": 0.35545,
-          "newsCount": 563437,
-          "blogCount": 17679481
+          "keyword": "공로",
+          "growthScore": 1.01,
+          "recentRatio": 1.95497,
+          "newsCount": 1497617,
+          "blogCount": 1035012
         },
         {
           "rank": 8,
-          "keyword": "원도심",
-          "growthScore": -0.3,
-          "recentRatio": 2.01421,
-          "newsCount": 420435,
-          "blogCount": 334026
+          "keyword": "생활권",
+          "growthScore": 0.27,
+          "recentRatio": 1.61001,
+          "newsCount": 563854,
+          "blogCount": 17648841
         },
         {
           "rank": 9,
-          "keyword": "북한이탈주민",
-          "growthScore": -0.59,
-          "recentRatio": 1.36255,
-          "newsCount": 130023,
-          "blogCount": 130778
+          "keyword": "온돌",
+          "growthScore": -0.81,
+          "recentRatio": 8.94454,
+          "newsCount": 60909,
+          "blogCount": 1248378
         },
         {
           "rank": 10,
-          "keyword": "특성화고",
-          "growthScore": -18.92,
-          "recentRatio": 84.02948,
-          "newsCount": 212334,
-          "blogCount": 286164
+          "keyword": "표창",
+          "growthScore": -1.51,
+          "recentRatio": 3.96919,
+          "newsCount": 1634981,
+          "blogCount": 1246941
         }
       ]
     },
@@ -182,83 +182,83 @@
       "items": [
         {
           "rank": 1,
-          "keyword": "엄정화",
-          "growthScore": 35.06,
-          "recentRatio": 83.83311,
-          "newsCount": 154578,
-          "blogCount": 132609
+          "keyword": "바타",
+          "growthScore": 49.66,
+          "recentRatio": 100,
+          "newsCount": 12617,
+          "blogCount": 102548
         },
         {
           "rank": 2,
-          "keyword": "하영",
-          "growthScore": 30.08,
-          "recentRatio": 100,
-          "newsCount": 38514,
-          "blogCount": 280108
+          "keyword": "지예은",
+          "growthScore": 45.21,
+          "recentRatio": 69.33707,
+          "newsCount": 21606,
+          "blogCount": 36471
         },
         {
           "rank": 3,
-          "keyword": "이상순",
-          "growthScore": 23.52,
-          "recentRatio": 81.74196,
-          "newsCount": 65320,
-          "blogCount": 60605
+          "keyword": "김민종",
+          "growthScore": 38.34,
+          "recentRatio": 89.86534,
+          "newsCount": 72662,
+          "blogCount": 43963
         },
         {
           "rank": 4,
-          "keyword": "홍혜걸",
-          "growthScore": 16.12,
-          "recentRatio": 78.87323,
-          "newsCount": 11579,
-          "blogCount": 14979
+          "keyword": "권은비",
+          "growthScore": 23.49,
+          "recentRatio": 35.98866,
+          "newsCount": 53498,
+          "blogCount": 84264
         },
         {
           "rank": 5,
-          "keyword": "김숙",
-          "growthScore": 2.84,
-          "recentRatio": 55.70563,
-          "newsCount": 213234,
-          "blogCount": 117511
+          "keyword": "전현무",
+          "growthScore": 17.5,
+          "recentRatio": 65.10176,
+          "newsCount": 391368,
+          "blogCount": 303302
         },
         {
           "rank": 6,
-          "keyword": "임신",
-          "growthScore": 2.12,
-          "recentRatio": 95.76612,
-          "newsCount": 1262751,
-          "blogCount": 11329111
+          "keyword": "도박",
+          "growthScore": 12.64,
+          "recentRatio": 100,
+          "newsCount": 572212,
+          "blogCount": 1673322
         },
         {
           "rank": 7,
-          "keyword": "자매",
-          "growthScore": 1.12,
-          "recentRatio": 5.70404,
-          "newsCount": 960628,
-          "blogCount": 5146599
+          "keyword": "조혜련",
+          "growthScore": 5.33,
+          "recentRatio": 20.17009,
+          "newsCount": 76127,
+          "blogCount": 46602
         },
         {
           "rank": 8,
-          "keyword": "지상렬",
-          "growthScore": 1.05,
-          "recentRatio": 1.61802,
-          "newsCount": 57829,
-          "blogCount": 35922
+          "keyword": "다니엘",
+          "growthScore": 1.41,
+          "recentRatio": 6.41791,
+          "newsCount": 505431,
+          "blogCount": 2157387
         },
         {
           "rank": 9,
-          "keyword": "일도",
-          "growthScore": 0.03,
-          "recentRatio": 1.01043,
-          "newsCount": 1036673,
-          "blogCount": 419841
+          "keyword": "연예계",
+          "growthScore": 0.13,
+          "recentRatio": 0.35435,
+          "newsCount": 853033,
+          "blogCount": 1838153
         },
         {
           "rank": 10,
-          "keyword": "연예계",
-          "growthScore": 0.01,
-          "recentRatio": 0.26878,
-          "newsCount": 852809,
-          "blogCount": 1829567
+          "keyword": "이혼",
+          "growthScore": 0.06,
+          "recentRatio": 0.47751,
+          "newsCount": 1165212,
+          "blogCount": 5018163
         }
       ]
     },
@@ -268,83 +268,83 @@
       "items": [
         {
           "rank": 1,
-          "keyword": "전승희",
-          "growthScore": 50.88,
+          "keyword": "황희찬",
+          "growthScore": 50.55,
           "recentRatio": 100,
-          "newsCount": 2476,
-          "blogCount": 4019
+          "newsCount": 153485,
+          "blogCount": 119979
         },
         {
           "rank": 2,
-          "keyword": "황희찬",
-          "growthScore": 35.41,
+          "keyword": "아시안게임",
+          "growthScore": 19.88,
           "recentRatio": 100,
-          "newsCount": 153378,
-          "blogCount": 119561
+          "newsCount": 1025388,
+          "blogCount": 477016
         },
         {
           "rank": 3,
-          "keyword": "김신록",
-          "growthScore": 10.87,
-          "recentRatio": 61.96636,
-          "newsCount": 25366,
-          "blogCount": 26840
+          "keyword": "이적시장",
+          "growthScore": 13.33,
+          "recentRatio": 21.80946,
+          "newsCount": 312548,
+          "blogCount": 373714
         },
         {
           "rank": 4,
-          "keyword": "샬케",
-          "growthScore": 5.3,
-          "recentRatio": 1.68674,
-          "newsCount": 26481,
-          "blogCount": 43557
+          "keyword": "홍현석",
+          "growthScore": 10.4,
+          "recentRatio": 23.33432,
+          "newsCount": 12656,
+          "blogCount": 9839
         },
         {
           "rank": 5,
-          "keyword": "국가대표",
-          "growthScore": 3.61,
-          "recentRatio": 81.68674,
-          "newsCount": 1864577,
-          "blogCount": 8774174
+          "keyword": "샬케",
+          "growthScore": 7.67,
+          "recentRatio": 15.37647,
+          "newsCount": 26589,
+          "blogCount": 43926
         },
         {
           "rank": 6,
-          "keyword": "라틴",
-          "growthScore": 2.46,
-          "recentRatio": 5.6921,
-          "newsCount": 221990,
-          "blogCount": 1168959
+          "keyword": "헌터",
+          "growthScore": 6.62,
+          "recentRatio": 70.23809,
+          "newsCount": 182914,
+          "blogCount": 1285576
         },
         {
           "rank": 7,
-          "keyword": "버추얼",
-          "growthScore": 1.2,
-          "recentRatio": 2.78725,
-          "newsCount": 126943,
-          "blogCount": 215838
+          "keyword": "스카",
+          "growthScore": 6.49,
+          "recentRatio": 43.35394,
+          "newsCount": 18122,
+          "blogCount": 330877
         },
         {
           "rank": 8,
-          "keyword": "화합",
-          "growthScore": 0.97,
-          "recentRatio": 8.40879,
-          "newsCount": 1878000,
-          "blogCount": 2695180
+          "keyword": "패럴림픽",
+          "growthScore": 2.23,
+          "recentRatio": 8.63095,
+          "newsCount": 218726,
+          "blogCount": 79683
         },
         {
           "rank": 9,
-          "keyword": "에이전시",
-          "growthScore": 0.6,
-          "recentRatio": 33.01204,
-          "newsCount": 146362,
-          "blogCount": 787873
+          "keyword": "디렉터",
+          "growthScore": 1.17,
+          "recentRatio": 4.36211,
+          "newsCount": 513711,
+          "blogCount": 1284644
         },
         {
           "rank": 10,
-          "keyword": "댄스스포츠",
-          "growthScore": 0.26,
-          "recentRatio": 1.42207,
-          "newsCount": 240116,
-          "blogCount": 468201
+          "keyword": "프랑크",
+          "growthScore": 0.52,
+          "recentRatio": 1.33928,
+          "newsCount": 57962,
+          "blogCount": 196557
         }
       ]
     },
@@ -354,83 +354,83 @@
       "items": [
         {
           "rank": 1,
-          "keyword": "시니어",
-          "growthScore": 29.15,
-          "recentRatio": 99.24623,
-          "newsCount": 667352,
-          "blogCount": 2693733
+          "keyword": "이혜영",
+          "growthScore": 47.68,
+          "recentRatio": 74.63768,
+          "newsCount": 111262,
+          "blogCount": 79150
         },
         {
           "rank": 2,
-          "keyword": "과학기술정보통신부",
-          "growthScore": 6.18,
-          "recentRatio": 33.31777,
-          "newsCount": 1031479,
-          "blogCount": 584431
+          "keyword": "산업부",
+          "growthScore": 23.66,
+          "recentRatio": 91.75627,
+          "newsCount": 812745,
+          "blogCount": 7257728
         },
         {
           "rank": 3,
-          "keyword": "우송대",
-          "growthScore": 4.83,
-          "recentRatio": 100,
-          "newsCount": 36960,
-          "blogCount": 88236
+          "keyword": "스타트업",
+          "growthScore": 22.03,
+          "recentRatio": 31.22412,
+          "newsCount": 1881326,
+          "blogCount": 2875116
         },
         {
           "rank": 4,
-          "keyword": "수시",
-          "growthScore": 2.5,
-          "recentRatio": 16.47223,
-          "newsCount": 807669,
-          "blogCount": 2830528
+          "keyword": "컨소시엄",
+          "growthScore": 15.86,
+          "recentRatio": 44.62365,
+          "newsCount": 917445,
+          "blogCount": 439030
         },
         {
           "rank": 5,
-          "keyword": "우주",
-          "growthScore": 1.92,
-          "recentRatio": 43.61393,
-          "newsCount": 1937233,
-          "blogCount": 10105977
+          "keyword": "라이노스",
+          "growthScore": 11.42,
+          "recentRatio": 18.78172,
+          "newsCount": 2832,
+          "blogCount": 5145
         },
         {
           "rank": 6,
-          "keyword": "헬스케어",
-          "growthScore": 1.31,
-          "recentRatio": 15.31204,
-          "newsCount": 1336872,
-          "blogCount": 2410437
+          "keyword": "수시모집",
+          "growthScore": 4.48,
+          "recentRatio": 14.69534,
+          "newsCount": 223457,
+          "blogCount": 947526
         },
         {
           "rank": 7,
-          "keyword": "이끌",
-          "growthScore": 0.0,
-          "recentRatio": 0.32664,
-          "newsCount": 1115264,
-          "blogCount": 1198881
+          "keyword": "과학기술정보통신부",
+          "growthScore": 3.87,
+          "recentRatio": 29.59401,
+          "newsCount": 1031957,
+          "blogCount": 585086
         },
         {
           "rank": 8,
-          "keyword": "생명과학",
-          "growthScore": -1.78,
-          "recentRatio": 9.65166,
-          "newsCount": 552084,
-          "blogCount": 2453056
+          "keyword": "김영민",
+          "growthScore": 3.1,
+          "recentRatio": 32.53205,
+          "newsCount": 126733,
+          "blogCount": 102081
         },
         {
           "rank": 9,
-          "keyword": "중앙아시아",
-          "growthScore": -8.29,
-          "recentRatio": 45.72864,
-          "newsCount": 201466,
-          "blogCount": 1288834
+          "keyword": "직썰",
+          "growthScore": 2.14,
+          "recentRatio": 4.70085,
+          "newsCount": 9078,
+          "blogCount": 5088
         },
         {
           "rank": 10,
-          "keyword": "서울과기대",
-          "growthScore": -12.72,
-          "recentRatio": 85.86094,
-          "newsCount": 76242,
-          "blogCount": 149536
+          "keyword": "신입생",
+          "growthScore": 1.08,
+          "recentRatio": 4.65949,
+          "newsCount": 665826,
+          "blogCount": 1602124
         }
       ]
     }
